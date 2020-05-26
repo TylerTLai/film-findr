@@ -20,7 +20,7 @@ const Home = ({ movieData }) => {
         <>
           <h3 className="SearchResults">Search Results</h3>
           <button className="ClearButton" onClick={clearSearchResults}>
-            Clear Results
+            Clear search results
           </button>
           <MovieCardList movies={movieData} />
         </>
