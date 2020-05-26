@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import Home from './components/Home';
+import MovieDetail from './components/MovieDetail';
+import MostPopular from './components/MostPopular';
+import Navbar from './components/Navbar';
+import TopRated from './components/TopRated';
 
 function App() {
+  const [movieData, setMovieData] = useState([]);
+
+  const getMovieData = (movies) => {
+    setMovieData(movies);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!!
-        </a>
-      </header>
+    <div>
+      <Navbar movieData={getMovieData} />
+      <Switch>
+        <Route path="/most-popular" component={MostPopular} />
+        <Route path="/top-rated" component={TopRated} />
+        <Route path="/:movie_id" component={MovieDetail} />
+        <Route exact path="/">
+          <Home movieData={movieData} />
+        </Route>
+        <Route
+          render={() => (
+            <h2 style={{ textAlign: 'center' }}>
+              Uh oh, page not Found!{' '}
+              <span role="img" aria-label="loudly crying face">
+                😭
+              </span>
+            </h2>
+          )}
+        />
+      </Switch>
     </div>
   );
 }
