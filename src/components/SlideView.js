@@ -35,8 +35,8 @@ const SlideView = () => {
         dots={true}
         slidesToShow={1}
         slidesToScroll={1}
-        infinite={false}
-        arrows={true}
+        infinite={true}
+        autoplay={true}
       >
         {movie.map((movie) => {
           return (
@@ -49,7 +49,7 @@ const SlideView = () => {
               >
                 <div className="BackdropText">
                   <h3>NEW MOVIE</h3>
-                  <h1>{movie.title}</h1>
+                  <h1>{movie.title.length > 20 ? movie.title.slice(0, 19) + '...' : movie.title}</h1>
                   <Link to={'/' + movie.id}>
                     <button
                       style={{
