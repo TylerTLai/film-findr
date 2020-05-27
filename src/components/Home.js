@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import MostPopular from './MostPopular';
 import TopRated from './TopRated';
 import MovieCardList from './MovieCardList';
+import SlideView from './SlideView';
 
 const Home = ({ movieData }) => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const Home = ({ movieData }) => {
         </>
       ) : (
         <>
+          <SlideView />
           <MostPopular />
           <br />
           <TopRated />
