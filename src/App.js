@@ -29,16 +29,12 @@ function App() {
           <MovieDetail />
         </Route> */}
 
-        {/* <Route path="/:movie_id" component={MovieDetail} /> */}
+        <Route path="/:movie_id" component={MovieDetail} />
 
-        <Route
+        {/* <Route
           path="/:movie_id"
           render={(movieData) => <MovieDetail movieData={movieData} />}
-        />
-
-        {/* <Route path='/mo' component={<Comments myprop="value" />}       */}
-        {/* 
-        <Route path="comments" component={() => <Comments myProp="value" />} /> */}
+        /> */}
 
         <Route exact path="/">
           <Home movieData={movieData} />

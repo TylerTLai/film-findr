@@ -72,6 +72,10 @@ small {
   display: none;
 }
 
+.SearchButtonSmall {
+  display: none;
+}
+
 .SearchInput:hover {
   border: medium solid hsl(0, 0%, 78%);
 }
@@ -217,7 +221,7 @@ small {
 
 .MovieDetail {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   margin: 0 auto 4em auto;
   max-width: 1000px;
   padding: 3em;
@@ -242,7 +246,7 @@ small {
   border-radius: 5px;
 }
 
-/* Responsive Styling */
+/* RESPONSIVE STYLING */
 
 @media (max-width: 500px) {
   .Navbar {
@@ -257,34 +261,27 @@ small {
     text-align: center;
   }
 
-  .SearchFormContainer {
-    height: auto;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
+  .title {
+    font-size: 2.5em;
+    text-align: center;
+    margin-left: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .SearchForm {
     display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .SearchInput {
-    display: none;
+    /* width: 100%; */
+    margin: 1em auto 1em auto;
   }
 
   .SearchInputSmall {
+    flex-grow: 1;
     font-size: 1em;
     height: 2.5em;
-    width: auto;
     padding: 5px 30px;
     border-radius: 30px;
-    border: medium solid rgb(222, 222, 222);
-    -webkit-box-shadow: 0px 2px 11px 4px rgba(0, 0, 0, 0.06);
-    -moz-box-shadow: 0px 2px 11px 4px rgba(0, 0, 0, 0.06);
-    box-shadow: 0px 2px 11px 4px rgba(0, 0, 0, 0.06);
+    border: 2px solid rgb(222, 222, 222);
     display: block;
   }
 
@@ -293,7 +290,29 @@ small {
     letter-spacing: 1px;
   }
 
+  .SearchButtonSmall {
+    display: block;
+    background: -webkit-linear-gradient(-180deg, #00c6ff 0%, #4d95ee 100%);
+    color: white;
+    padding: 15px;
+    margin-left: 0.4em;
+    border-radius: 15px;
+    border: 0px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+  .SearchButtonIcon {
+    position: relative;
+    top: 3px;
+    left: 4px;
+  }
+
   .SearchButton {
+    display: none;
+  }
+
+  .SearchInput {
     display: none;
   }
 
@@ -325,7 +344,112 @@ small {
   }
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 501px) {
+  .Navbar {
+    overflow: auto;
+    padding: 1em;
+    margin-bottom: 2em;
+  }
+
+  .Navbar a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2.5em;
+    text-align: center;
+    margin-left: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .SearchForm {
+    display: flex;
+    /* flex-direction: row-reverse; */
+    /* width: 100%; */
+    margin: 1em auto 1em auto;
+  }
+
+  .SearchInputSmall {
+    flex-grow: 1;
+    font-size: 1em;
+    height: 2.5em;
+    padding: 5px 30px;
+    border-radius: 30px;
+    border: 2px solid rgb(222, 222, 222);
+    display: none;
+  }
+
+  .SearchInputSmall::placeholder {
+    color: hsl(0, 0%, 50%);
+    letter-spacing: 1px;
+  }
+
+  .SearchButtonSmall {
+    display: none;
+  }
+
+  .SearchButtonIcon {
+    position: relative;
+    top: 3px;
+    left: 4px;
+  }
+
+  .SearchButton {
+    display: inline-block;
+    background: -webkit-linear-gradient(-180deg, #00c6ff 0%, #4d95ee 100%);
+    color: white;
+    padding: 12px 15px 12px 15px;
+    margin-left: 0.5em;
+    margin-right: 0;
+    border-radius: 15px;
+    border: 0px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+  .SearchInput {
+    flex-grow: 1;
+    font-size: 1em;
+    height: 2em;
+    padding: 0.3em 1.5em;
+    line-height: 1em;
+    border-radius: 10px;
+    border: medium solid hsl(0, 0%, 90%);
+    transition: 0.3s;
+    background-color: white;
+  }
+}
+
+@media (min-width: 768px) {
+  .Navbar {
+    background-color: #ffffff;
+    font-size: 1em;
+    letter-spacing: 1px;
+    overflow: auto;
+    padding: 1em;
+    margin-bottom: 5em;
+    box-shadow: 0px 2px 11px 4px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0px 2px 11px 4px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0px 2px 11px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .Navbar a {
+    color: #222;
+    padding: 0.7em 1.5em;
+    float: right;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+
+  .Navbar a:hover {
+    background: #f7f7f7;
+    border-radius: 30px;
+    padding: 0px, 15px;
+  }
+
   .SearchForm {
     grid-template-columns: auto 1fr auto;
     grid-gap: 1rem;
@@ -333,6 +457,25 @@ small {
   }
 
   .SearchInput {
+    background-color: #00c6ff;
     margin-bottom: 0;
   }
-} */
+}
+
+@media (min-width: 941px) {
+  /* .Navbar {
+    overflow: auto;
+    padding: 1em;
+    margin-bottom: 2em;
+  }
+
+  .Navbar a {
+    float: none;
+    display: block;
+    text-align: center;
+  } */
+
+  .SearchInput {
+    background-color: red;
+  }
+}

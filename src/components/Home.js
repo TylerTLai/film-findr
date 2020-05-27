@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import MostPopular from './MostPopular';
 import TopRated from './TopRated';
 import MovieCardList from './MovieCardList';

@@ -30,7 +30,7 @@ const SearchBar = ({ movieData }) => {
   };
 
   return (
-    <div className="SearchFormContainer">
+    <>
       {/* {console.log('from render', movies)} */}
       <form className="SearchForm" onSubmit={searchMovies}>
         <input
@@ -39,7 +39,7 @@ const SearchBar = ({ movieData }) => {
           name="query"
           id="query"
           required={true}
-          placeholder="Search for a movie..."
+          placeholder="Find a movie..."
           autoComplete="off"
           value={query}
           onChange={handleChange}
@@ -49,19 +49,25 @@ const SearchBar = ({ movieData }) => {
           <FaSearch className="SearchButtonIcon" /> Search
         </button>
 
+        {/* Mobile Components */}
+
         <input
           className="SearchInputSmall"
           type="text"
           name="query"
           id="query"
           required={true}
-          placeholder="Search movies, actors, shows, etc."
+          placeholder="Find a movie..."
           autoComplete="off"
           value={query}
           onChange={handleChange}
         />
+
+        <button className="SearchButtonSmall" type="submit">
+          <FaSearch className="SearchButtonIcon" />
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 
