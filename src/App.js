@@ -18,9 +18,28 @@ function App() {
     <div>
       <Navbar movieData={getMovieData} />
       <Switch>
-        <Route path="/most-popular" component={MostPopular} />
-        <Route path="/top-rated" component={TopRated} />
-        <Route path="/:movie_id" component={MovieDetail} />
+        <Route path="/top-rated">
+          <TopRated movieData={movieData} />
+        </Route>
+        <Route path="/most-popular">
+          <MostPopular movieData={movieData} />
+        </Route>
+
+        {/* <Route path="/:movie_id">
+          <MovieDetail />
+        </Route> */}
+
+        {/* <Route path="/:movie_id" component={MovieDetail} /> */}
+
+        <Route
+          path="/:movie_id"
+          render={(movieData) => <MovieDetail movieData={movieData} />}
+        />
+
+        {/* <Route path='/mo' component={<Comments myprop="value" />}       */}
+        {/* 
+        <Route path="comments" component={() => <Comments myProp="value" />} /> */}
+
         <Route exact path="/">
           <Home movieData={movieData} />
         </Route>

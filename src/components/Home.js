@@ -14,7 +14,7 @@ const Home = ({ movieData }) => {
 
   return (
     <div>
-      {console.log('home render', movieData)}
+      {/* {console.log('home render', movieData)} */}
 
       {movieData && movieData.length ? (
         <>
