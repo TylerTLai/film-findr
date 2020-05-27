@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom';
 
 const SlideView = () => {
-  const [movieBackDrop, setMovieBackDrop] = useState([]);
-  const [movieId, setMovieId] = useState([]);
+  const [movie, setMovie] = useState([]);
 
   const getMovieBackDrop = async (e) => {
     const API_KEY = process.env.REACT_APP_TMDB_KEY;
@@ -14,16 +14,8 @@ const SlideView = () => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log('from fetch', data.results);
-      //   setMovieId(data.results.id.slice(0, 5))
-      setMovieBackDrop(
-        data.results
-          .slice(0, 5)
-          .map(
-            (movie) =>
-              `https://image.tmdb.org/t/p/w1400_and_h450_bestv2${movie.backdrop_path}`
-          )
-      );
+      //   console.log('from fetch', data.results);
+      setMovie(data.results.slice(0, 5));
     } catch (err) {
       console.log('error', err);
     }
@@ -33,11 +25,8 @@ const SlideView = () => {
     getMovieBackDrop();
   }, []);
 
-  const handleClick = () => {
-    alert('hi');
-  };
-
-  //   console.log('from slideView', movieId)
+  console.log('from slideView movieBackdropInfo', movie);
+  // console.log('from slideView movieBackdrop', movieBackDrop)
 
   return (
     <div className="container">
@@ -49,19 +38,34 @@ const SlideView = () => {
         infinite={false}
         arrows={true}
       >
-        {movieBackDrop.map((backdrop) => {
+        {movie.map((movie) => {
           return (
             <div>
-              {/* <button onClick={handleClick}>click me</button> */}
-              <img
-                src={backdrop}
-                alt="img"
+              <div
+                className="Backdrop"
                 style={{
-                  margin: '0',
-                  padding: '0',
-                  width: '100vw',
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2${movie.backdrop_path})`,
                 }}
-              />
+              >
+                <div className="BackdropText">
+                  <h3>NEW MOVIE</h3>
+                  <h1>{movie.title}</h1>
+                  <Link to={'/' + movie.id}>
+                    <button
+                      style={{
+                        background: 'black',
+                        color: 'white',
+                        fontSize: '1.2em',
+                        padding: '12px 20px',
+                        border: '2px solid white',
+                        borderRadius: '12px',
+                      }}
+                    >
+                      View Movie
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           );
         })}
