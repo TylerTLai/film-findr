@@ -555,3 +555,34 @@ small {
     display: none;
   }
 }
+
+
+@media (max-width: 900px) {
+ 
+  .MovieDetail {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto 4em auto;
+  max-width: 1000px;
+  padding: 3em;
+  border-radius: 20px;
+  box-shadow: 1px 10px 11px rgba(0, 0, 0, 0.1);
+}
+
+.MovieImage {
+  width: 40%;
+  height: auto;
+  border-radius: 10px;
+  margin: 1.5em 4em 0 0;
+}
+
+.MovieInfo {
+  margin: 0 auto;
+  flex: 1;
+}
+
+.MovieTrailer {
+  border-radius: 5px;
+  width: 50vw;
+}
+}

@@ -13,6 +13,12 @@
 - TMDB API
 - React Hooks
 - React Router
+- React Slick
+
+## Features
+
+- User is able to search for movies via TMDB api.
+- Mobile responsive
 
 ## Using React Movie Search
 

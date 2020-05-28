@@ -19,10 +19,6 @@ const Home = ({ movieData }) => {
 
       {movieData && movieData.length ? (
         <>
-          <h3 className="SearchResults">Search Results</h3>
-          <button className="ClearButton" onClick={clearSearchResults}>
-            Clear search results
-          </button>
           <MovieCardList movies={movieData} />
         </>
       ) : (
