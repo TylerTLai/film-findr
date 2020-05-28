@@ -86,7 +86,7 @@ const MovieDetail = (props) => {
               <div>
                 <p>
                   <img
-                    src={`https://image.tmdb.org/t/p/w276_and_h350_face${cast.profile_path}`}
+                    src={`https://image.tmdb.org/t/p/w276_and_h350_face${cast.profile_path}`} alt={cast.name + ' picture'}
                   />
                   {cast.name}
                 </p>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import {withRouter, Redirect } from 'react-router-dom';
 
-const SearchBar = ({ movieData }) => {
+const SearchBar = ({ movieData, ...props }) => {
   // set states
   const [query, setQuery] = useState('');
 
@@ -26,12 +27,20 @@ const SearchBar = ({ movieData }) => {
       console.log(err);
     }
 
+    if(props.location.pathname === '/most-popular') {
+      props.history.push('/')
+    }
+
+    if(props.location.pathname === '/top-rated') {
+      props.history.push('/')
+    }
+
     setQuery('');
   };
 
   return (
     <>
-      {/* {console.log('from render', movies)} */}
+      {console.log('from search bar', props)}
       <form className="SearchForm" onSubmit={searchMovies}>
         <input
           className="SearchInput"
@@ -71,4 +80,4 @@ const SearchBar = ({ movieData }) => {
   );
 };
 
-export default SearchBar;
+export default withRouter(SearchBar);

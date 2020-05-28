@@ -16,6 +16,12 @@ p {
 small {
   font-size: 1em;
   letter-spacing: 1px;
+  text-decoration: none;
+}
+
+small a {
+
+  text-decoration: none;
 }
 
 /* .container {
@@ -383,7 +389,7 @@ small {
   }
 }
 
-@media (min-width: 320px) {
+@media (min-width: 500px) {
   .Navbar {
     overflow: auto;
     padding: 1em;

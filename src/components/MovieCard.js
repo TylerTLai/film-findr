@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie, id }) => {
   return (
     <>
-      <NavLink to={'/' + id}>
+      <Link to={'/' + id}>
         <div className="MovieCard">
           <div className="MoviePosterContainer">
             <img
@@ -26,7 +26,7 @@ const MovieCard = ({ movie, id }) => {
             <small>RATING: {movie.vote_average}</small>
           </p>
         </div>
-      </NavLink>
+      </Link>
     </>
   );
 };

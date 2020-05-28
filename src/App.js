@@ -22,7 +22,7 @@ function App() {
           <TopRated movieData={movieData} />
         </Route>
         <Route path="/most-popular">
-          <MostPopular movieData={movieData} />
+          <MostPopular movieData={movieData}/>
         </Route>
 
         {/* <Route path="/:movie_id">

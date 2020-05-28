@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MostPopular from './MostPopular';
 import TopRated from './TopRated';
 import MovieCardList from './MovieCardList';
 import SlideView from './SlideView';
 
 const Home = ({ movieData }) => {
-  useEffect(() => {
-    //stuff
-  });
 
   const clearSearchResults = () => {
     alert('clear search results');

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
-import MovieCardList from './MovieCardList';
 
 const TopRated = ({ movieData }) => {
   const [topRated, setTopRated] = useState([]);
@@ -23,21 +22,9 @@ const TopRated = ({ movieData }) => {
     discoverTopRated();
   }, []);
 
-  const clearSearchResults = () => {
-    alert('clear search results');
-  };
 
   return (
-    <div>
-      {movieData && movieData.length ? (
-        <>
-          {/* <h3 className="SearchResults">Search Results</h3>
-          <button className="ClearButton" onClick={clearSearchResults}>
-            Clear search results
-          </button> */}
-          <MovieCardList movies={movieData} />
-        </>
-      ) : (
+   
         <>
           <h1 className="title">Top Rated</h1>
           <div className="MovieCardList">
@@ -52,9 +39,7 @@ const TopRated = ({ movieData }) => {
               ))}
           </div>
         </>
-      )}
-    </div>
-  );
+      )
 };
 
 export default TopRated;
