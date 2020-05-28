@@ -14,7 +14,6 @@ const SlideView = () => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      //   console.log('from fetch', data.results);
       setMovie(data.results.slice(0, 5));
     } catch (err) {
       console.log('error', err);
@@ -25,8 +24,6 @@ const SlideView = () => {
     getMovieBackDrop();
   }, []);
 
-  console.log('from slideView movieBackdropInfo', movie);
-  // console.log('from slideView movieBackdrop', movieBackDrop)
 
   return (
     <div className="container">

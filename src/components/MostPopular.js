@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
 import MovieCardList from './MovieCardList';
 
-const MostPopular = ({ movieData }) => {
+const MostPopular = ({ movieData, ...props}) => {
   const [popularMovies, setPopularMovies] = useState([]);
 
   const discoverPopularMovies = async (e) => {
@@ -27,14 +27,16 @@ const MostPopular = ({ movieData }) => {
     alert('clear search results');
   };
 
+  // console.log('from mostpopular', props)
+
   return (
     <div>
       {movieData && movieData.length ? (
         <>
-          <h3 className="SearchResults">Search Results</h3>
+          {/* <h3 className="SearchResults">Search Results</h3>
           <button className="ClearButton" onClick={clearSearchResults}>
             Clear search results
-          </button>
+          </button> */}
           <MovieCardList movies={movieData} />
         </>
       ) : (

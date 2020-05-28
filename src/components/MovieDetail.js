@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa';
 
 const MovieDetail = (props) => {
   const [movieInfo, setMovieInfo] = useState({ rating: null });
+  const [castInfo, setCastInfo] = useState([]);
 
   // FETCH MOVIE INFO AND VIDEO.
   const getMovie = async (id) => {
@@ -39,7 +40,7 @@ const MovieDetail = (props) => {
         trailerKey: trailerKey,
       });
 
-      console.log('from getMovie', credits.cast);
+      setCastInfo(credits.cast.slice(0, 8));
     } catch (err) {
       console.log(err);
     }
@@ -48,13 +49,14 @@ const MovieDetail = (props) => {
   // Link star icons with ratings.
 
   useEffect(() => {
-    console.log(props);
+    // console.log(props);
     const id = props.match.params.movie_id;
     getMovie(id);
   }, []);
 
   return (
     <div className="MovieDetail">
+      {console.log('from render', castInfo)}
       <img
         className="MovieImage"
         src={movieInfo.image}
@@ -76,6 +78,32 @@ const MovieDetail = (props) => {
           {movieInfo.rating}
           {/* {console.log('from render', movieInfo)} */}
         </h3>
+
+        <h2 style={{ letterSpacing: '3px' }}>CAST</h2>
+        <p className="CastInfo">
+          {castInfo.map((cast) => {
+            return (
+              <div>
+                <p>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w276_and_h350_face${cast.profile_path}`}
+                  />
+                  {cast.name}
+                </p>
+              </div>
+            );
+          })}
+        </p>
+
+        <p className="CastInfoSmall">
+          {castInfo.slice(0, 6).map((cast) => {
+            return (
+              <div>
+                <p>{cast.name}</p>
+              </div>
+            );
+          })}
+        </p>
 
         <h2 style={{ letterSpacing: '3px' }}>SYNOPSIS</h2>
         <p

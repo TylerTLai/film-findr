@@ -31,10 +31,10 @@ const TopRated = ({ movieData }) => {
     <div>
       {movieData && movieData.length ? (
         <>
-          <h3 className="SearchResults">Search Results</h3>
+          {/* <h3 className="SearchResults">Search Results</h3>
           <button className="ClearButton" onClick={clearSearchResults}>
             Clear search results
-          </button>
+          </button> */}
           <MovieCardList movies={movieData} />
         </>
       ) : (
