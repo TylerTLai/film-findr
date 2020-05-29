@@ -40,6 +40,10 @@ function App() {
         <Route exact path="/">
           <Home movieData={movieData} />
         </Route>
+        
+        <Route exact path="/home">
+          <Home movieData={movieData} />
+        </Route>
 
         <Route
           render={() => (
@@ -51,6 +55,7 @@ function App() {
             </h2>
           )}
         />
+
       </Switch>
     </div>
   );

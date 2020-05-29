@@ -51,12 +51,13 @@ const MovieDetail = (props) => {
   useEffect(() => {
     // console.log(props);
     const id = props.match.params.movie_id;
+    // const id = '419704';
     getMovie(id);
   }, []);
 
   return (
     <div className="MovieDetail">
-      {/* {console.log('from render', castInfo)} */}
+      {console.log('from render', castInfo)}
       <img
         className="MovieImage"
         src={movieInfo.image}
@@ -83,10 +84,11 @@ const MovieDetail = (props) => {
         <p className="CastInfo">
           {castInfo.map((cast) => {
             return (
-              <div>
+              <div key={cast.credit_id}>
                 <p>
                   <img
-                    src={`https://image.tmdb.org/t/p/w276_and_h350_face${cast.profile_path}`} alt={cast.name + ' picture'}
+                    src={`https://image.tmdb.org/t/p/w276_and_h350_face${cast.profile_path}`}
+                    alt={cast.name + ' picture'}
                   />
                   {cast.name}
                 </p>
@@ -98,7 +100,7 @@ const MovieDetail = (props) => {
         <p className="CastInfoSmall">
           {castInfo.slice(0, 6).map((cast) => {
             return (
-              <div>
+              <div key={cast.credit_id}>
                 <p>{cast.name}</p>
               </div>
             );

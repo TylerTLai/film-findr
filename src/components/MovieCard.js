@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa';
 
 const MovieCard = ({ movie, id }) => {
   return (
@@ -19,11 +20,13 @@ const MovieCard = ({ movie, id }) => {
               ? `${movie.title.slice(0, 25)}...`
               : movie.title}
           </h3>
-          <p>
+          {/* <p>
             <small>{movie.release_date}</small>
-          </p>
+          </p> */}
           <p>
-            <small>RATING: {movie.vote_average}</small>
+            <small>
+              <FaStar color="#ffc93c" /> {movie.vote_average}
+            </small>
           </p>
         </div>
       </Link>
