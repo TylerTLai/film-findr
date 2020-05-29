@@ -15,19 +15,37 @@ const MovieCard = ({ movie, id }) => {
             />
           </div>
 
+          <small>
+            <FaStar color="#ffc93c" />
+            <p>{movie.vote_average}</p>
+          </small>
           <h3 className="MovieTitle">
-            {movie.title.length > 30
-              ? `${movie.title.slice(0, 25)}...`
-              : movie.title}
+            {movie.title.length > 10 ? (
+              <p style={{ fontSize: '.8em', marginBottom: '0' }}>
+                {movie.title.slice(0, 15)}...
+              </p>
+            ) : (
+              movie.title
+            )}
           </h3>
-          {/* <p>
-            <small>{movie.release_date}</small>
-          </p> */}
-          <p>
-            <small>
-              <FaStar color="#ffc93c" /> {movie.vote_average}
-            </small>
-          </p>
+          <Link
+            to={'/' + id}
+            style={{ display: 'flex', justifyContent: 'center' }}
+          >
+            <button
+              style={{
+                backgroundColor: '#222831',
+                color: 'white',
+                fontSize: '1em',
+                margin: '1em',
+                border: '0',
+                borderRadius: '5px',
+                padding: '.5em 1.2em',
+              }}
+            >
+              Movie Info
+            </button>
+          </Link>
         </div>
       </Link>
     </>

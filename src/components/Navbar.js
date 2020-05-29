@@ -53,25 +53,25 @@ useEffect(() => {
           <li>
             <NavLink exact to="top-rated">
               <AiFillStar className="NavbarMobileIcons" />
-              <p>TOP RATED</p>
+              <p>Top Rated</p>
             </NavLink>
           </li>
           <li>
             <NavLink exact to="/most-popular">
               <BsFillBarChartFill />
-              <p>MOST POPULAR</p>
+              <p>Most Popular</p>
             </NavLink>
           </li>
           <li>
             <NavLink exact to="/search">
               <FaSearch />
-              <p>SEARCH</p>
+              <p>Search</p>
             </NavLink>
           </li>
           <li>
             <NavLink exact to="/">
               <AiFillHome />
-              <p>HOME</p>
+              <p>Home</p>
             </NavLink>
           </li>
         </ul>
