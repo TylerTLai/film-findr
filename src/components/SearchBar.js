@@ -45,11 +45,11 @@ const SearchBar = ({ movieData, ...props }) => {
 
   useEffect(() => {
     setPath(props.location.pathname);
-  });
+  }, [props.location.pathname]);
 
   return (
     <>
-      {console.log('from search bar', path)}
+      {/* {console.log('from search bar', path)} */}
       <form className="SearchForm" onSubmit={searchMovies}>
         <input
           className="SearchInput"
