@@ -184,6 +184,15 @@ a:active {
   display: none;
 }
 
+/* .slick-track {
+  opacity: 1;
+  width: 100% !important;
+} */
+
+.slick-arrow {
+  display: none !important;
+}
+
 .Backdrop {
   height: 450px;
   background-position: center;

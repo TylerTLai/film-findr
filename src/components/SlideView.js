@@ -24,8 +24,9 @@ const SlideView = () => {
     getMovieBackDrop();
   }, []);
 
+
   return (
-    <div style={{ marginRight: '0px', width: '100%' }}>
+    <div>
       <Slider
         speed={500}
         dots={true}
@@ -33,7 +34,7 @@ const SlideView = () => {
         slidesToScroll={1}
         infinite={true}
         autoplay={true}
-        style={{ width: '100%' }}
+        style={{width: '100%'}}
       >
         {movie.map((movie) => {
           return (
@@ -46,11 +47,7 @@ const SlideView = () => {
               >
                 <div className="BackdropText">
                   <h3>NEW MOVIE</h3>
-                  <h1>
-                    {movie.title.length > 20
-                      ? movie.title.slice(0, 19) + '...'
-                      : movie.title}
-                  </h1>
+                  <h1>{movie.title.length > 20 ? movie.title.slice(0, 19) + '...' : movie.title}</h1>
                   <Link to={'/' + movie.id}>
                     <button
                       style={{
