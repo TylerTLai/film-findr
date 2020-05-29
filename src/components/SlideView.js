@@ -26,7 +26,7 @@ const SlideView = () => {
 
 
   return (
-    <div className="container">
+    <div style={{marginRight: '0px', width: '100%'}}>
       <Slider
         speed={500}
         dots={true}
@@ -34,6 +34,7 @@ const SlideView = () => {
         slidesToScroll={1}
         infinite={true}
         autoplay={true}
+        style={{width: '100%'}}
       >
         {movie.map((movie) => {
           return (

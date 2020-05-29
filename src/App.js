@@ -6,6 +6,7 @@ import MovieDetail from './components/MovieDetail';
 import MostPopular from './components/MostPopular';
 import Navbar from './components/Navbar';
 import TopRated from './components/TopRated';
+import Search from './components/Search';
 
 function App() {
   const [movieData, setMovieData] = useState([]);
@@ -17,28 +18,29 @@ function App() {
   return (
     <div>
       <Navbar movieData={getMovieData} />
+
       <Switch>
-        <Route path="/top-rated">
+
+        <Route exact path="/top-rated">
           <TopRated movieData={movieData} />
         </Route>
-        <Route path="/most-popular">
-          <MostPopular movieData={movieData}/>
+
+        <Route exact path="/most-popular">
+          <MostPopular movieData={movieData} />
         </Route>
 
-        {/* <Route path="/:movie_id">
-          <MovieDetail />
+        <Route exact path="/:movie_id" component={MovieDetail} />
+        
+        <Route path='/search' component={Search} />
+{/* 
+        <Route exact path="/search">
+          <Search movieData={movieData} />
         </Route> */}
-
-        <Route path="/:movie_id" component={MovieDetail} />
-
-        {/* <Route
-          path="/:movie_id"
-          render={(movieData) => <MovieDetail movieData={movieData} />}
-        /> */}
 
         <Route exact path="/">
           <Home movieData={movieData} />
         </Route>
+
         <Route
           render={() => (
             <h2 style={{ textAlign: 'center' }}>
