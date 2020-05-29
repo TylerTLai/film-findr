@@ -47,7 +47,7 @@ useEffect(() => {
       <motion.nav
         className="NavbarMobile"
         initial={{ y: 100 }}
-        animate={{ y: showMobileNav ? 100 : 0 }}
+        animate={{ y: showMobileNav ? 0 : 100 }}
       >
         <ul>
           <li>
