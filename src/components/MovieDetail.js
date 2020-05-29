@@ -56,7 +56,7 @@ const MovieDetail = (props) => {
 
   return (
     <div className="MovieDetail">
-      {console.log('from render', castInfo)}
+      {/* {console.log('from render', castInfo)} */}
       <img
         className="MovieImage"
         src={movieInfo.image}

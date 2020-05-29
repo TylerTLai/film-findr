@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import {withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 const SearchBar = ({ movieData, ...props }) => {
   // set states
   const [query, setQuery] = useState('');
+  const [path, setPath] = useState('');
 
   // handle input change
   const handleChange = (e) => {
@@ -27,20 +28,28 @@ const SearchBar = ({ movieData, ...props }) => {
       console.log(err);
     }
 
-    if(props.location.pathname === '/most-popular') {
-      props.history.push('/')
+    if (props.location.pathname === '/most-popular') {
+      props.history.push('/');
     }
 
-    if(props.location.pathname === '/top-rated') {
-      props.history.push('/')
+    if (props.location.pathname === '/top-rated') {
+      props.history.push('/');
+    }
+
+    if (props.location.pathname === path) {
+      props.history.push('/');
     }
 
     setQuery('');
   };
 
+  useEffect(() => {
+    setPath(props.location.pathname);
+  });
+
   return (
     <>
-      {console.log('from search bar', props)}
+      {console.log('from search bar', path)}
       <form className="SearchForm" onSubmit={searchMovies}>
         <input
           className="SearchInput"
