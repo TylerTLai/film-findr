@@ -53,7 +53,7 @@ const MovieDetail = (props) => {
     const id = props.match.params.movie_id;
     // const id = '419704';
     getMovie(id);
-  }, []);
+  }, [props.match.params.movie_id]);
 
   return (
     <div className="MovieDetail">
