@@ -27,13 +27,33 @@ const MovieDetail = (props) => {
         axios.get(creditsUrl),
       ]);
 
+      // console.log('from getMovie, movieInfo', movie.data)
+      console.log('from getMovie, video', video.data);
 
       setStar(movie.data.vote_average);
 
+      // const trailerKey = video.data.results.filter(
+      //   (video) => video.site === 'YouTube'
+      // )[0].key;
 
-      const trailerKey = video.data.results.filter(
-        (video) => video.site === 'YouTube'
-      )[0].key;
+      // const testArr = [
+      //               {
+      //                 id: '5cf0a0a1c3a3684b2d1dff2a',
+      //                 iso_639_1: 'en',
+      //                 iso_3166_1: 'US',
+      //                 key: 'x8DKg_fsacM',
+      //                 name: 'Onward Official Teaser Trailer',
+      //                 site: 'YouTube',
+      //                 size: 1080,
+      //                 type: 'Teaser',
+      //               },
+      //             ]
+
+      const trailerKey =
+        video.data.results !== 'undefined' && video.data.results.length > 0
+          ? video.data.results.filter((video) => video.site === 'YouTube')[0]
+              .key
+          : 'no key';
 
       const hrs = Math.floor(movie.data.runtime / 60);
       const mins = movie.data.runtime % 60;
@@ -47,7 +67,7 @@ const MovieDetail = (props) => {
         synoposis: movie.data.overview,
         image: imgUrl,
         movie_id: movie.data.id,
-        trailerKey: trailerKey,
+        trailerKey,
       });
 
       setCastInfo(credits.data.cast.slice(0, 8));
@@ -61,13 +81,13 @@ const MovieDetail = (props) => {
   useEffect(() => {
     // console.log(props);
     const id = props.match.params.movie_id;
-    // const id = '419704';
+    // const id = '487624';
     getMovie(id);
   }, [props.match.params.movie_id]);
 
   return (
     <div className="MovieDetail">
-      {/* {console.log('from render', castInfo)} */}
+      {/* {console.log('from render', movieInfo)} */}
       <img
         className="MovieImage"
         src={movieInfo.image}
@@ -130,18 +150,19 @@ const MovieDetail = (props) => {
           {movieInfo.synoposis}
         </p>
         <br />
-
-        <h2 style={{ letterSpacing: '3px' }}>TRAILER</h2>
-        <iframe
-          title="a"
-          className="MovieTrailer"
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${movieInfo.trailerKey}?controls=1`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
+        <div className={movieInfo.trailerKey === 'no key' ? 'Trailer' : null}>
+          <h2 style={{ letterSpacing: '3px' }}>TRAILER</h2>
+          <iframe
+            title="a"
+            className="MovieTrailer"
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${movieInfo.trailerKey}?controls=1`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
       </div>
     </div>
   );
