@@ -5,9 +5,9 @@ import { AiFillHome, AiFillStar } from 'react-icons/ai';
 import { FaSearch } from 'react-icons/fa';
 import { BsFillBarChartFill } from 'react-icons/bs';
 import { motion } from 'framer-motion';
-// import { useSpring, animated as a, config } from 'react-spring';
+import {withRouter} from 'react-router-dom';
 
-const Navbar = ({ movieData }) => {
+const Navbar = ({ movieData, ...props }) => {
   const getMovieData = (movies, searchTerm) => {
     movieData(movies, searchTerm);
   };
@@ -32,6 +32,7 @@ useEffect(() => {
 
 }, [lastYPos])
 
+// console.log('from navbar', props.location.pathname)
 
   return (
     <>
@@ -39,7 +40,7 @@ useEffect(() => {
         <NavLink to="top-rated">Top Rated</NavLink>
         <NavLink to="/most-popular">Most Popular</NavLink>
         <NavLink to="/">Home</NavLink>
-        <SearchBar movieData={getMovieData}/>
+        <SearchBar movieData={getMovieData} />
       </nav>
 
       {/* mobile menu */}
@@ -47,7 +48,12 @@ useEffect(() => {
       <motion.nav
         className="NavbarMobile"
         initial={{ y: 100 }}
-        animate={{ y: showMobileNav ? 0 : 100 }}
+        animate={
+          props.location.pathname === '/search' ||
+          props.location.pathname === '/results'
+            ? { y: 0 }
+            : { y: showMobileNav ? 0 : 100 }
+        }
       >
         <ul>
           <li>
@@ -82,4 +88,4 @@ useEffect(() => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
