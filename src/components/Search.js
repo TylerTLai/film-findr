@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
-// import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const Search = ({ movieData, ...props }) => {
   // set states
@@ -22,8 +22,8 @@ const Search = ({ movieData, ...props }) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-
-      movieData(data.results);
+    //   console.log('from search', data.results);
+      movieData(data.results, query);
     } catch (err) {
       console.log(err);
     }
@@ -37,15 +37,18 @@ const Search = ({ movieData, ...props }) => {
     }
 
     if (props.location.pathname === path) {
-      props.history.push('/');
+      props.history.push('/results');
     }
 
     setQuery('');
   };
 
-//   useEffect(() => {
-//     setPath(props.location.pathname);
-//   }, [props.location.pathname]);
+  useEffect(() => {
+    //   console.log('from search useEffect', props)
+    setPath(props.location.pathname);
+  }, []);
+
+  //   console.log('from Search', query)
 
   return (
     <>
@@ -70,4 +73,4 @@ const Search = ({ movieData, ...props }) => {
   );
 };
 
-export default Search;
+export default withRouter(Search);

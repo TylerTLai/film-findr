@@ -8,8 +8,8 @@ import { motion } from 'framer-motion';
 // import { useSpring, animated as a, config } from 'react-spring';
 
 const Navbar = ({ movieData }) => {
-  const getMovieData = (movies) => {
-    movieData(movies);
+  const getMovieData = (movies, searchTerm) => {
+    movieData(movies, searchTerm);
   };
 
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -39,7 +39,7 @@ useEffect(() => {
         <NavLink to="top-rated">Top Rated</NavLink>
         <NavLink to="/most-popular">Most Popular</NavLink>
         <NavLink to="/">Home</NavLink>
-        <SearchBar movieData={getMovieData} />
+        <SearchBar movieData={getMovieData}/>
       </nav>
 
       {/* mobile menu */}

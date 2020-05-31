@@ -7,20 +7,24 @@ import MostPopular from './components/MostPopular';
 import Navbar from './components/Navbar';
 import TopRated from './components/TopRated';
 import Search from './components/Search';
+import Results from './components/Results';
 
 function App() {
   const [movieData, setMovieData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const getMovieData = (movies) => {
+  const getMovieData = (movies, searchTerm) => {
     setMovieData(movies);
+    setSearchTerm(searchTerm)
+    console.log('from app', searchTerm)
   };
+
 
   return (
     <div>
-      <Navbar movieData={getMovieData} />
+      <Navbar movieData={getMovieData} searchTerm={searchTerm}/>
 
       <Switch>
-
         <Route exact path="/top-rated">
           <TopRated movieData={movieData} />
         </Route>
@@ -29,10 +33,17 @@ function App() {
           <MostPopular movieData={movieData} />
         </Route>
 
+        <Route exact path="/search">
+          <Search movieData={getMovieData} />
+        </Route>
+
+        {/* <Route path="/search" component={Search} /> */}
+
+        <Route exact path="/results">
+          <Results movieData={movieData} searchTerm={searchTerm}/>
+        </Route>
         <Route exact path="/:movie_id" component={MovieDetail} />
-        
-        <Route path='/search' component={Search} />
-{/* 
+        {/* 
         <Route exact path="/search">
           <Search movieData={movieData} />
         </Route> */}
@@ -40,7 +51,7 @@ function App() {
         <Route exact path="/">
           <Home movieData={movieData} />
         </Route>
-        
+
         <Route exact path="/home">
           <Home movieData={movieData} />
         </Route>
@@ -55,7 +66,6 @@ function App() {
             </h2>
           )}
         />
-
       </Switch>
     </div>
   );

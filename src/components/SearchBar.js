@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { withRouter, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const SearchBar = ({ movieData, ...props }) => {
   // set states
@@ -23,7 +23,7 @@ const SearchBar = ({ movieData, ...props }) => {
       const res = await fetch(url);
       const data = await res.json();
 
-      movieData(data.results);
+      movieData(data.results, query);
     } catch (err) {
       console.log(err);
     }
@@ -37,7 +37,7 @@ const SearchBar = ({ movieData, ...props }) => {
     }
 
     if (props.location.pathname === path) {
-      props.history.push('/');
+      props.history.push('/results');
     }
 
     setQuery('');
