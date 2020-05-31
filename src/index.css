@@ -464,6 +464,10 @@ a:active {
     border-radius: 5px;
     max-width: 100%;
   }
+
+  .Trailer {
+    display: none;
+  }
 }
 
 @media (min-width: 500px) {
