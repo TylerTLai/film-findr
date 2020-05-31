@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
+import axios from 'axios';
 
 const MovieDetail = (props) => {
   const [movieInfo, setMovieInfo] = useState({ rating: null });
   const [castInfo, setCastInfo] = useState([]);
+  const [star, setStar] = useState(1);
 
-  // FETCH MOVIE INFO AND VIDEO.
+  // FETCH MOVIE INFO AND video.data.
   const getMovie = async (id) => {
     const API_KEY = process.env.REACT_APP_TMDB_KEY;
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
@@ -13,34 +15,42 @@ const MovieDetail = (props) => {
     const creditsUrl = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
 
     try {
+      // const [movie, video, credits] = await Promise.all([
+      //   fetch(url).then((movieRes) => movieRes.json()),
+      //   fetch(videoUrl).then((videoRes) => videoRes.json()),
+      //   fetch(creditsUrl).then((creditRes) => creditRes.json()),
+      // ]);
+
       const [movie, video, credits] = await Promise.all([
-        fetch(url).then((movieRes) => movieRes.json()),
-        fetch(videoUrl).then((videoRes) => videoRes.json()),
-        fetch(creditsUrl).then((creditRes) => creditRes.json()),
+        axios.get(url),
+        axios.get(videoUrl),
+        axios.get(creditsUrl),
       ]);
 
-      // might need a .then() for trailer loading bug.
 
-      const trailerKey = video.results.filter(
+      setStar(movie.data.vote_average);
+
+
+      const trailerKey = video.data.results.filter(
         (video) => video.site === 'YouTube'
       )[0].key;
 
-      const hrs = Math.floor(movie.runtime / 60);
-      const mins = movie.runtime % 60;
-      const imgUrl = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${movie.poster_path}`;
+      const hrs = Math.floor(movie.data.runtime / 60);
+      const mins = movie.data.runtime % 60;
+      const imgUrl = `https://image.tmdb.org/t/p/w185_and_h278_bestv2${movie.data.poster_path}`;
 
       setMovieInfo({
-        title: movie.title,
-        year: movie.release_date.slice(0, 4),
+        title: movie.data.title,
+        year: movie.data.release_date.slice(0, 4),
         duration: `${hrs}h${mins}mins`,
-        rating: movie.vote_average,
-        synoposis: movie.overview,
+        rating: movie.data.vote_average,
+        synoposis: movie.data.overview,
         image: imgUrl,
-        movie_id: movie.id,
+        movie_id: movie.data.id,
         trailerKey: trailerKey,
       });
 
-      setCastInfo(credits.cast.slice(0, 8));
+      setCastInfo(credits.data.cast.slice(0, 8));
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +67,7 @@ const MovieDetail = (props) => {
 
   return (
     <div className="MovieDetail">
-      {console.log('from render', castInfo)}
+      {/* {console.log('from render', castInfo)} */}
       <img
         className="MovieImage"
         src={movieInfo.image}
@@ -75,7 +85,7 @@ const MovieDetail = (props) => {
           {movieInfo.year} | {movieInfo.duration} | PG-13
         </p>
         <h3>
-          {Array(3).fill(<FaStar color="#ffc93c" />)}
+          {Array(Math.round(star / 2)).fill(<FaStar color="#ffc93c" />)}
           {movieInfo.rating}
           {/* {console.log('from render', movieInfo)} */}
         </h3>
