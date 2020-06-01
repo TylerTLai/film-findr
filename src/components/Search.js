@@ -57,7 +57,7 @@ const Search = ({ movieData, ...props }) => {
       </h1>
       <form className="SearchForm" onSubmit={searchMovies}>
       
-        <FaSearch className="SearchButtonIcon" />
+        <FaSearch className="SearchButtonIcon" onClick={searchMovies}/>
         <input
           autoFocus="true"
           className="SearchInputSmall"
