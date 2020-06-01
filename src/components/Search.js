@@ -22,7 +22,7 @@ const Search = ({ movieData, ...props }) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-    //   console.log('from search', data.results);
+      //   console.log('from search', data.results);
       movieData(data.results, query);
     } catch (err) {
       console.log(err);
@@ -52,14 +52,20 @@ const Search = ({ movieData, ...props }) => {
 
   return (
     <>
+      <h1 className="title">
+        Find your <br /> favorite movies
+      </h1>
       <form className="SearchForm" onSubmit={searchMovies}>
+      
+        <FaSearch className="SearchButtonIcon" />
         <input
+          autoFocus="true"
           className="SearchInputSmall"
           type="text"
           name="query"
           id="query"
           required={true}
-          placeholder="Find a movie..."
+          placeholder="Find a movie... "
           autoComplete="off"
           value={query}
           onChange={handleChange}
