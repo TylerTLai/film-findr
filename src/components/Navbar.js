@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import { AiFillHome, AiFillStar } from 'react-icons/ai';
 import { FaSearch } from 'react-icons/fa';
 import { BsFillBarChartFill } from 'react-icons/bs';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import {withRouter} from 'react-router-dom';
 
 const Navbar = ({ movieData, ...props }) => {
@@ -15,22 +15,22 @@ const Navbar = ({ movieData, ...props }) => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [lastYPos, setLastYPos] = useState(0);
 
-useEffect(() => {
+// useEffect(() => {
 
-    const handleScroll = () => {
-        const yPos = window.scrollY;
-        const isScrollingUp = yPos < lastYPos;
+//     const handleScroll = () => {
+//         const yPos = window.scrollY;
+//         const isScrollingUp = yPos < lastYPos;
 
-        setShowMobileNav(isScrollingUp);
-        setLastYPos(yPos);
-    }
-    window.addEventListener('scroll', handleScroll, false)
+//         setShowMobileNav(isScrollingUp);
+//         setLastYPos(yPos);
+//     }
+//     window.addEventListener('scroll', handleScroll, false)
 
-    return () => {
-        window.removeEventListener('scroll', handleScroll, false);
-    }
+//     return () => {
+//         window.removeEventListener('scroll', handleScroll, false);
+//     }
 
-}, [lastYPos])
+// }, [lastYPos])
 
 // console.log('from navbar', props.location.pathname)
 
@@ -45,15 +45,15 @@ useEffect(() => {
 
       {/* mobile menu */}
 
-      <motion.nav
+      <nav
         className="NavbarMobile"
-        initial={{ y: 100 }}
-        animate={
-          props.location.pathname === '/search' ||
-          props.location.pathname === '/results'
-            ? { y: 0 }
-            : { y: showMobileNav ? 0 : 100 }
-        }
+        // initial={{ y: 100 }}
+        // animate={
+        //   props.location.pathname === '/search' ||
+        //   props.location.pathname === '/results'
+        //     ? { y: 0 }
+        //     : { y: showMobileNav ? 0 : 100 }
+        // }
       >
         <ul>
           <li>
@@ -83,7 +83,7 @@ useEffect(() => {
         </ul>
 
         {/* <SearchBar movieData={getMovieData} /> */}
-      </motion.nav>
+      </nav>
     </>
   );
 };
