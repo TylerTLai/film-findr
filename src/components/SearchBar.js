@@ -3,16 +3,14 @@ import { FaSearch } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 
 const SearchBar = ({ movieData, ...props }) => {
-  // set states
+
   const [query, setQuery] = useState('');
   const [path, setPath] = useState('');
 
-  // handle input change
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
-  // fetch movie data
   const searchMovies = async (e) => {
     e.preventDefault();
 
@@ -49,7 +47,7 @@ const SearchBar = ({ movieData, ...props }) => {
 
   return (
     <>
-      {/* {console.log('from search bar', path)} */}
+
       <form className="SearchForm" onSubmit={searchMovies}>
         <input
           className="SearchInput"
@@ -66,8 +64,6 @@ const SearchBar = ({ movieData, ...props }) => {
         <button className="SearchButton" type="submit">
           <FaSearch className="SearchButtonIcon" /> Search
         </button>
-
-        {/* Mobile Components */}
 
         <input
           className="SearchInputSmall"

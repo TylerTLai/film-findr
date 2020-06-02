@@ -5,9 +5,9 @@ import Home from './components/Home';
 import MovieDetail from './components/MovieDetail';
 import MostPopular from './components/MostPopular';
 import Navbar from './components/Navbar';
-import TopRated from './components/TopRated';
-import Search from './components/Search';
 import Results from './components/Results';
+import Search from './components/Search';
+import TopRated from './components/TopRated';
 
 function App() {
   const [movieData, setMovieData] = useState([]);
@@ -18,7 +18,6 @@ function App() {
     setSearchTerm(searchTerm)
     console.log('from app', searchTerm)
   };
-
 
   return (
     <div>
@@ -37,16 +36,11 @@ function App() {
           <Search movieData={getMovieData} />
         </Route>
 
-        {/* <Route path="/search" component={Search} /> */}
-
         <Route exact path="/results">
           <Results movieData={movieData} searchTerm={searchTerm}/>
         </Route>
+        
         <Route exact path="/:movie_id" component={MovieDetail} />
-        {/* 
-        <Route exact path="/search">
-          <Search movieData={movieData} />
-        </Route> */}
 
         <Route exact path="/">
           <Home movieData={movieData} />
@@ -66,6 +60,7 @@ function App() {
             </h2>
           )}
         />
+
       </Switch>
     </div>
   );
