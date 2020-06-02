@@ -7,7 +7,6 @@ const MovieDetail = (props) => {
   const [castInfo, setCastInfo] = useState([]);
   const [star, setStar] = useState(1);
 
-  // FETCH MOVIE INFO AND video.data.
   const getMovie = async (id) => {
     const API_KEY = process.env.REACT_APP_TMDB_KEY;
     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
@@ -15,39 +14,15 @@ const MovieDetail = (props) => {
     const creditsUrl = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
 
     try {
-      // const [movie, video, credits] = await Promise.all([
-      //   fetch(url).then((movieRes) => movieRes.json()),
-      //   fetch(videoUrl).then((videoRes) => videoRes.json()),
-      //   fetch(creditsUrl).then((creditRes) => creditRes.json()),
-      // ]);
-
       const [movie, video, credits] = await Promise.all([
         axios.get(url),
         axios.get(videoUrl),
         axios.get(creditsUrl),
       ]);
 
-      // console.log('from getMovie, movieInfo', movie.data)
-      console.log('from getMovie, video', video.data);
-
       setStar(movie.data.vote_average);
 
-      // const trailerKey = video.data.results.filter(
-      //   (video) => video.site === 'YouTube'
-      // )[0].key;
-
-      // const testArr = [
-      //               {
-      //                 id: '5cf0a0a1c3a3684b2d1dff2a',
-      //                 iso_639_1: 'en',
-      //                 iso_3166_1: 'US',
-      //                 key: 'x8DKg_fsacM',
-      //                 name: 'Onward Official Teaser Trailer',
-      //                 site: 'YouTube',
-      //                 size: 1080,
-      //                 type: 'Teaser',
-      //               },
-      //             ]
+      console.log('from movieDetails', credits.data);
 
       const trailerKey =
         video.data.results !== 'undefined' && video.data.results.length > 0
@@ -70,24 +45,24 @@ const MovieDetail = (props) => {
         trailerKey,
       });
 
-      setCastInfo(credits.data.cast.slice(0, 8));
+      setCastInfo(
+        credits.data.cast
+          .slice(0, 8)
+          .filter((cast) => cast.profile_path !== null)
+      );
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Link star icons with ratings.
-
   useEffect(() => {
-    // console.log(props);
     const id = props.match.params.movie_id;
-    // const id = '487624';
+    // const test_movieId = '487624';
     getMovie(id);
   }, [props.match.params.movie_id]);
 
   return (
     <div className="MovieDetail">
-      {/* {console.log('from render', movieInfo)} */}
       <img
         className="MovieImage"
         src={movieInfo.image}
@@ -107,7 +82,6 @@ const MovieDetail = (props) => {
         <h3>
           {Array(Math.round(star / 2)).fill(<FaStar color="#ffc93c" />)}
           {movieInfo.rating}
-          {/* {console.log('from render', movieInfo)} */}
         </h3>
 
         <h2 style={{ letterSpacing: '3px' }}>CAST</h2>

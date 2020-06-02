@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import MovieCard from './MovieCard';
 import { withRouter } from 'react-router-dom';
+
+import MovieCard from './MovieCard';
 
 const MostPopular = ({ movieData }) => {
   const [popularMovies, setPopularMovies] = useState([]);

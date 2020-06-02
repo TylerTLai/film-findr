@@ -13,6 +13,9 @@ const BackDrops = () => {
     try {
       const res = await fetch(url);
       const data = await res.json();
+
+      console.log('from backdrop', data.results);
+
       setMovieBackDrop(
         data.results
           .slice(0, 1)
@@ -30,7 +33,7 @@ const BackDrops = () => {
     getMovieBackDrop();
   }, []);
 
-  console.log(movieBackDrop);
+  console.log('from backdrop', movieBackDrop);
 
   const image = movieBackDrop.map((image) => {
     return <img src={image} alt="" />;
@@ -46,15 +49,6 @@ const BackDrops = () => {
         padding: '0 !important',
       }}
     >
-      {/* <img
-        src={url}
-        alt="img"
-        style={{
-          margin: '0',
-          padding: '0',
-          width: '100vw',
-        }}
-      /> */}
       {image}
     </div>
   );

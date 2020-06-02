@@ -3,16 +3,13 @@ import { FaSearch } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 
 const Search = ({ movieData, ...props }) => {
-  // set states
   const [query, setQuery] = useState('');
   const [path, setPath] = useState('');
 
-  // handle input change
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
 
-  // fetch movie data
   const searchMovies = async (e) => {
     e.preventDefault();
 
@@ -22,7 +19,7 @@ const Search = ({ movieData, ...props }) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      //   console.log('from search', data.results);
+
       movieData(data.results, query);
     } catch (err) {
       console.log(err);
@@ -44,11 +41,8 @@ const Search = ({ movieData, ...props }) => {
   };
 
   useEffect(() => {
-    //   console.log('from search useEffect', props)
     setPath(props.location.pathname);
   }, []);
-
-  //   console.log('from Search', query)
 
   return (
     <>
@@ -56,8 +50,7 @@ const Search = ({ movieData, ...props }) => {
         Find your <br /> favorite movies
       </h1>
       <form className="SearchForm" onSubmit={searchMovies}>
-      
-        <FaSearch className="SearchButtonIcon" onClick={searchMovies}/>
+        <FaSearch className="SearchButtonIcon" onClick={searchMovies} />
         <input
           autoFocus="true"
           className="SearchInputSmall"

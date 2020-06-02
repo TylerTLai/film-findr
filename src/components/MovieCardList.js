@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from './MovieCard';
 
 const MovieCardList = ({ movies }) => {
-  // console.log('from moviecardlist', movies)
+
   return (
     <div className="MovieCardList">
       {movies

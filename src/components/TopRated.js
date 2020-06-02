@@ -22,7 +22,6 @@ const TopRated = ({ movieData }) => {
     discoverTopRated();
   }, []);
 
-
   return (
    
         <>
