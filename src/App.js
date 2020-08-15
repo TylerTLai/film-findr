@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div>
-      <Navbar movieData={getMovieData} searchTerm={searchTerm}/>
+      {/* <Navbar movieData={getMovieData} searchTerm={searchTerm}/> */}
 
       <Switch>
         <Route exact path="/top-rated">
