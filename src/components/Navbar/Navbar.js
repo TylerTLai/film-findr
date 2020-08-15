@@ -10,7 +10,7 @@ const StyledNavbar = styled.nav`
   margin: 0;
   padding: 1em;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   font-size: 1rem;
 
@@ -27,8 +27,8 @@ function Navbar() {
   return (
     <StyledNavbar>
       <NavLink to="/">Film Finder</NavLink>
-      <NavLink to="top-rated">Top Rated</NavLink>
-      <NavLink to="/most-popular">Most Popular</NavLink>
+      {/* <NavLink to="top-rated">Top Rated</NavLink>
+      <NavLink to="/most-popular">Most Popular</NavLink> */}
       <SearchBar />
     </StyledNavbar>
   );

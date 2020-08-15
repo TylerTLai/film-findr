@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import MovieDetail from './components/MovieDetail';
 import MostPopular from './components/MostPopular';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import Results from './components/Results';
 import Search from './components/Search';
 import TopRated from './components/TopRated';
