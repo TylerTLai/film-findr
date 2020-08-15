@@ -34,7 +34,7 @@ const SlideView = () => {
         slidesToScroll={1}
         infinite={true}
         autoplay={true}
-        style={{width: '100%'}}
+        style={{width: '100%', height: '100vh'}}
       >
         {movie.map((movie) => {
           return (
