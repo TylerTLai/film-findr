@@ -1,5 +1,7 @@
 # React Movie Search 🍿
 
+*Version 2 is in the works. Will add redux, css in js, improve app structure, and mobile resposnsiveness.*
+
 ![Twitter Follow](https://img.shields.io/twitter/follow/tylertlai?style=social)
 
 <code>React</code> Movie Search is a web app that allows users to search for movies based on the TMDB API.
