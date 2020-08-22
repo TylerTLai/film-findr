@@ -1,4 +1,4 @@
-# React Movie Search 🍿
+# React Movie Search Version 1 🍿
 
 *Version 2 is in the works. Will add redux, css in js, improve app structure, and mobile resposnsiveness.*
 
