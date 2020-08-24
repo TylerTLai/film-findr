@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { connect } from 'react-redux';
+
 import { fetchMovies } from '../../store/actions/movie';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../../const';
 
