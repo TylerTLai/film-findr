@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import rootReducer from './store/reducers';
 import './index.css';
+import 'normalize.css';
 // import App from './App';
 import App2 from './App2';
 
