@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
   height: 550px;
   background-size: cover;
   margin-top: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(${({ imgURL }) => imgURL});
 `;
 
@@ -46,11 +46,10 @@ const StyledMovieText = styled.div`
     color: white;
     font-size: 1.2em;
     padding: 12px 20px;
-    border: 2px solid white;
-    border-radius: 12px;
+    border: 1px solid white;
+    border-radius: 5px;
   }
 `;
-
 
 function Carousel({ movies, getMovies }) {
   // console.log('carousel', movies);
@@ -65,8 +64,9 @@ function Carousel({ movies, getMovies }) {
       <div key={movie.id}>
         <StyledHeader imgURL={backdropURL}>
           <StyledMovieText>
-            <h3>NEW MOVIE</h3>
+            <h3>COMING SOON</h3>
             <h1>{movie.title}</h1>
+            <p>RELEASE DATE: {movie.release_date}</p>
             <button>View Movie</button>
           </StyledMovieText>
         </StyledHeader>
@@ -76,11 +76,14 @@ function Carousel({ movies, getMovies }) {
 
   const settings = {
     autoplay: true,
+    autoplaySpeed: 3000,
     dots: true,
     draggable: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: true,
+    mobileFirst: true,
   };
 
   return (
