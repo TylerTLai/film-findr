@@ -1,6 +1,6 @@
 # React Movie Search Version 1 🍿
 
-*Version 2 is in the works. Will add redux, css in js, improve app structure, and mobile resposnsiveness.*
+*Version 2 is in the works and can be seen on film-findr-2 branch. I will add Redux, Redux Thunk, CSS in JS via Styled Components, improve the app structure, and mobile resposnsiveness.*
 
 ![Twitter Follow](https://img.shields.io/twitter/follow/tylertlai?style=social)
 
