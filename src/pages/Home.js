@@ -11,6 +11,7 @@ import {
 
 const StyledMain = styled.main`
   background-color: #060507;
+  padding: 20px;
 `;
 
 function Home({
@@ -24,8 +25,8 @@ function Home({
     getPopularMovies();
   }, []);
 
-  console.log('top rated', topRatedMovies);
-  console.log('most popular', mostPopularMovies);
+  // console.log('top rated', topRatedMovies);
+  // console.log('most popular', mostPopularMovies);
 
   return (
     <StyledMain>
@@ -33,8 +34,8 @@ function Home({
       <br />
       <br />
       <br />
-      <MovieList title={'Most Popular'} movies={mostPopularMovies} />
-      <MovieList title={'Top Rated'} movies={topRatedMovies} />
+      <MovieList title={'MOST POPULAR'} movies={mostPopularMovies} />
+      {/* <MovieList title={'Top Rated'} movies={topRatedMovies} /> */}
     </StyledMain>
   );
 }

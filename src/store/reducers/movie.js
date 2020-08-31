@@ -4,10 +4,10 @@ import {
   FETCH_TOP_RATED_MOVIES,
 } from '../actions/movie';
 
-const initialState = {
-  topRated: [],
-  mostPopular: [],
-}
+// const initialState = {
+//   topRated: [],
+//   mostPopular: [],
+// }
 
 export const getMovies = (state = [], action) => {
   switch (action.type) {
