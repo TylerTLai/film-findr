@@ -7,11 +7,12 @@ import styled from 'styled-components';
 import {
   fetchMostPopularMovies,
   fetchTopRatedMovies,
+  fetchNowPlayingMovies,
 } from '../store/actions/movie';
 
 const StyledMain = styled.main`
   background-color: #060507;
-  padding: 20px;
+  padding: 50px;
 `;
 
 function Home({
@@ -19,31 +20,33 @@ function Home({
   getPopularMovies,
   topRatedMovies,
   getTopRatedMovies,
+  nowPlayingMovies,
+  getNowPlayingMovies
 }) {
   useEffect(() => {
-    getTopRatedMovies();
     getPopularMovies();
+    getTopRatedMovies();
+    getNowPlayingMovies();
   }, []);
 
-  // console.log('top rated', topRatedMovies);
-  // console.log('most popular', mostPopularMovies);
+  console.log('home | most popular', mostPopularMovies);
+  console.log('home | top rated', topRatedMovies);
 
   return (
     <StyledMain>
       <Carousel />
-      <br />
-      <br />
-      <br />
       <MovieList title={'MOST POPULAR'} movies={mostPopularMovies} />
-      {/* <MovieList title={'Top Rated'} movies={topRatedMovies} /> */}
+      <MovieList title={'TOP RATED'} movies={topRatedMovies} />
+      <MovieList title={'NOW PLAYING'} movies={nowPlayingMovies} />
     </StyledMain>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    mostPopularMovies: state.getMovies,
-    topRatedMovies: state.getMovies,
+    mostPopularMovies: state.getMovies.mostPopular,
+    topRatedMovies: state.getMovies.topRated,
+    nowPlayingMovies: state.getMovies.nowPlaying,
   };
 };
 
@@ -51,6 +54,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getPopularMovies: () => dispatch(fetchMostPopularMovies()),
     getTopRatedMovies: () => dispatch(fetchTopRatedMovies()),
+    getNowPlayingMovies: () => dispatch(fetchNowPlayingMovies()),
   };
 };
 

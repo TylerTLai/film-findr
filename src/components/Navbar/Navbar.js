@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import SearchBar from '../SearchBar';
+import { ReactComponent as ReactLogo } from '../../assets/logo.svg';
 
 const StyledNavbar = styled.nav`
   background-color: #060507;
@@ -27,7 +28,9 @@ const StyledNavbar = styled.nav`
 function Navbar() {
   return (
     <StyledNavbar>
-      <NavLink to="/">FILM FINDR</NavLink>
+      <NavLink to="/">
+        <ReactLogo style={{ height: '45px', marginLeft: '10px' }} />
+      </NavLink>
       {/* <NavLink to="top-rated">Top Rated</NavLink>
       <NavLink to="/most-popular">Most Popular</NavLink> */}
       <SearchBar />

@@ -96,7 +96,7 @@ function Carousel({ movies, getMovies }) {
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.getMovies,
+    movies: state.getMovies.upcoming,
   };
 };
 

@@ -13,6 +13,7 @@ const StyledMovieSection = styled.div`
 
 const StyledMovieCategory = styled.h1`
   color: #eeeeee;
+  margin-top: 75px;
 `;
 
 const StyledMovie = styled.div`
@@ -41,7 +42,7 @@ const StyledMovie = styled.div`
 `;
 
 function MovieList({ title, movies }) {
-  const popularMovies = movies.map((movie) => {
+  const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_SMALL + movie.poster_path;
 
     return (
@@ -69,7 +70,7 @@ function MovieList({ title, movies }) {
     <>
       <StyledMovieCategory>{title}</StyledMovieCategory>
       <StyledMovieSection>
-        <Slider {...settings}>{popularMovies}</Slider>
+        <Slider {...settings}>{movieCollection}</Slider>
       </StyledMovieSection>
     </>
   );
