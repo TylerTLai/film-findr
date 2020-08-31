@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { fetchMovies } from '../../store/actions/movie';
+import { fetchUpcomingMovies } from '../../store/actions/movie';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../../const';
 
 const StyledHeader = styled.header`
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMovies: () => dispatch(fetchMovies()),
+    getMovies: () => dispatch(fetchUpcomingMovies()),
   };
 };
 

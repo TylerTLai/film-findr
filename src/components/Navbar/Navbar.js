@@ -15,7 +15,8 @@ const StyledNavbar = styled.nav`
   font-size: 1rem;
 
   a {
-    color: #da8950;
+    font-size: 1.2rem;
+    color: #eeeeee;
   }
 
   a:hover {
@@ -26,7 +27,7 @@ const StyledNavbar = styled.nav`
 function Navbar() {
   return (
     <StyledNavbar>
-      <NavLink to="/">Film Finder</NavLink>
+      <NavLink to="/">FILM FINDR</NavLink>
       {/* <NavLink to="top-rated">Top Rated</NavLink>
       <NavLink to="/most-popular">Most Popular</NavLink> */}
       <SearchBar />
