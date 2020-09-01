@@ -60,6 +60,7 @@ const StyledCast = styled.div`
 `;
 
 const StyledDetails = styled.div``;
+const StyledMedia = styled.div``;
 
 const StyledInfo = styled.main`
   background-color: #060507;
@@ -74,10 +75,22 @@ const StyledInfo = styled.main`
 
   & ${StyledStory} {
     grid-area: story;
+    border: 1px solid white;
   }
 
   & ${StyledDetails} {
     grid-area: details;
+    border: 1px solid white;
+  }
+
+  & ${StyledCast} {
+    grid-area: cast;
+    border: 1px solid white;
+  }
+
+  & ${StyledMedia} {
+    grid-area: media;
+    border: 1px solid white;
   }
 `;
 
@@ -116,15 +129,20 @@ function Movie({ movieDetails, fetchMovie, history }) {
           <p>{movieDetails.overview}</p>
         </StyledStory>
 
-        <StyledCast>
-          <h1>THE CAST</h1>
-          <p>cast stuff will go here.</p>
-        </StyledCast>
-
         <StyledDetails>
           <h1>DETAIL</h1>
-          <p>move details will go here</p>
+          <p>Move details will go here</p>
         </StyledDetails>
+
+        <StyledCast>
+          <h1>THE CAST</h1>
+          <p>Cast stuff will go here.</p>
+        </StyledCast>
+
+        <StyledMedia>
+          <h1>MEDIA</h1>
+          <p>Media stuff will go here.</p>
+        </StyledMedia>
       </StyledInfo>
     </>
   );
