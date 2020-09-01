@@ -61,6 +61,9 @@ function Carousel({ movies, getMovies }) {
 
   const topMovies = movies.map((movie) => {
     const backdropURL = URL_IMG + BACKDROP_SIZE_ORIGINAL + movie.backdrop_path;
+    const handleClick = () => {
+      console.log('clicked');
+    };
     return (
       <div key={movie.id}>
         <StyledHeader imgURL={backdropURL}>
@@ -68,7 +71,7 @@ function Carousel({ movies, getMovies }) {
             <h3>COMING SOON</h3>
             <h1>{movie.title}</h1>
             <p>RELEASE DATE: {movie.release_date}</p>
-            <button>View Movie</button>
+            <button onClick={handleClick}>View Movie</button>
           </StyledMovieText>
         </StyledHeader>
       </div>
@@ -85,7 +88,6 @@ function Carousel({ movies, getMovies }) {
     slidesToScroll: 1,
     arrows: true,
     mobileFirst: true,
-    
   };
 
   return (

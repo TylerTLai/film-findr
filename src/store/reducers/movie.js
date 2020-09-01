@@ -3,6 +3,7 @@ import {
   FETCH_MOST_POPULAR_MOVIES,
   FETCH_TOP_RATED_MOVIES,
   FETCH_NOW_PLAYING_MOVIES,
+  FETCH_MOVIE_DETAILS,
 } from '../actions/movie';
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   topRated: [],
   mostPopular: [],
   nowPlaying: [],
+  movieDetails: [],
 };
 
 export const getMovies = (state = initialState, action) => {
@@ -25,6 +27,9 @@ export const getMovies = (state = initialState, action) => {
 
     case FETCH_NOW_PLAYING_MOVIES:
       return { ...state, nowPlaying: action.payload };
+
+    case FETCH_MOVIE_DETAILS:
+      return { ...state, movieDetails: action.payload };
 
     default:
       return state;

@@ -29,8 +29,8 @@ function Home({
     getNowPlayingMovies();
   }, []);
 
-  console.log('home | most popular', mostPopularMovies);
-  console.log('home | top rated', topRatedMovies);
+  // console.log('home | most popular', mostPopularMovies);
+  // console.log('home | top rated', topRatedMovies);
 
   return (
     <StyledMain>

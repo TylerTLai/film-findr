@@ -3,8 +3,11 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import { Link } from 'react-router-dom';
 import { URL_IMG, IMG_SIZE_LARGE } from '../../const';
+import { connect } from 'react-redux';
+import { fetchMovieDetails } from '../../store/actions/movie';
+
 import Arrows from '../Arrows/Arrows';
 
 const StyledMovieSection = styled.div`
@@ -54,9 +57,13 @@ const StyledMovie = styled.div`
   }
 `;
 
-function MovieList({ title, movies }) {
+function MovieList({ title, movies, fetchMovie }) {
   const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
+
+    const handleClick = (id) => {
+      fetchMovie(id)
+    };
 
     return (
       <div key={movie.id}>
@@ -67,7 +74,9 @@ function MovieList({ title, movies }) {
               ? movie.title
               : movie.title.slice(0, 13) + '...'}
           </p>
-          <button>View Movie</button>
+          <button onClick={() => handleClick(movie.id)}>
+            <Link to={"/" + movie.id}>View Movie</Link>
+          </button>
         </StyledMovie>
       </div>
     );
@@ -121,4 +130,14 @@ function MovieList({ title, movies }) {
   );
 }
 
-export default MovieList;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchMovie: (movieId) => dispatch(fetchMovieDetails(movieId)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
