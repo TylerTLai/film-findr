@@ -28,9 +28,9 @@ const StyledHeroBanner = styled.header`
 `;
 
 const StyledStory = styled.div`
-  background-color: #060507;
-  color: white;
-  padding: 4em 8em;
+  /* background-color: #060507; */
+  /* color: white; */
+  /* padding: 4em 8em; */
 
   & h2 {
     font-size: 1.5em;
@@ -44,9 +44,9 @@ const StyledStory = styled.div`
 `;
 
 const StyledCast = styled.div`
-  background-color: #060507;
-  color: white;
-  padding: 4em 8em;
+  /* background-color: #060507; */
+  /* color: white; */
+  /* padding: 4em 8em; */
 
   & h2 {
     font-size: 1.5em;
@@ -56,6 +56,28 @@ const StyledCast = styled.div`
   & p {
     font-size: 1.2em;
     line-height: 1.5em;
+  }
+`;
+
+const StyledDetails = styled.div``;
+
+const StyledInfo = styled.main`
+  background-color: #060507;
+  color: #fff;
+  padding: 4em 8em;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'story details'
+    'cast media';
+
+  & ${StyledStory} {
+    grid-area: story;
+  }
+
+  & ${StyledDetails} {
+    grid-area: details;
   }
 `;
 
@@ -87,14 +109,23 @@ function Movie({ movieDetails, fetchMovie, history }) {
         <h2>{movieDetails.tagline}</h2>
         <h2>{movieDetails.release_date}</h2>
       </StyledHeroBanner>
-      <StyledStory>
-        <h1>THE STORY</h1>
-        <p>{movieDetails.overview}</p>
-      </StyledStory>
-      <StyledCast>
-        <h1>THE CAST</h1>
-        <p>{movieDetails.overview}</p>
-      </StyledCast>
+
+      <StyledInfo>
+        <StyledStory>
+          <h1>THE STORY</h1>
+          <p>{movieDetails.overview}</p>
+        </StyledStory>
+
+        <StyledCast>
+          <h1>THE CAST</h1>
+          <p>cast stuff will go here.</p>
+        </StyledCast>
+
+        <StyledDetails>
+          <h1>DETAIL</h1>
+          <p>move details will go here</p>
+        </StyledDetails>
+      </StyledInfo>
     </>
   );
 }

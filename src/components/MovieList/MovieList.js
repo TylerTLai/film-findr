@@ -39,10 +39,10 @@ const StyledMovie = styled.div`
     opacity: 1;
     width: 100%;
     transition: 0.2s ease-in-out;
-  }
 
-  img:hover {
-    opacity: 0.8;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   & p {
@@ -65,11 +65,11 @@ const StyledMovie = styled.div`
     border-radius: 5px;
     width: 100%;
     transition: 0.2s ease-in-out;
-  }
 
-  button:hover {
-    background: #00aaa1;
-    cursor: pointer;
+    &:hover {
+      background: #00aaa1;
+      cursor: pointer;
+    }
   }
 `;
 
