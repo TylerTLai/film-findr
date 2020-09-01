@@ -85,6 +85,7 @@ function Carousel({ movies, getMovies }) {
     slidesToScroll: 1,
     arrows: true,
     mobileFirst: true,
+    
   };
 
   return (

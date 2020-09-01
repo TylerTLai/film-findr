@@ -10,6 +10,7 @@ export const URL_UPCOMING = 'https://api.themoviedb.org/3/movie/upcoming?api_key
 
 export const IMG_SIZE_XSMALL = 'w45/';
 export const IMG_SIZE_SMALL = 'w154/';
+export const IMG_SIZE_MED = 'w185';
 export const IMG_SIZE_LARGE = 'w342/';
 export const BACKDROP_SIZE_LARGE = 'w1280';
 export const BACKDROP_SIZE_ORIGINAL = 'original';
