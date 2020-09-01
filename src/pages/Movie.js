@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../const';
+import { fetchMovieDetails } from '../store/actions/movie';
 
 const StyledBanner = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url(${({ imgURL }) => imgURL});
-  height: 550px;
+  height: 100vh;
 `;
 
 const StyledMovieTitle = styled.h1`
@@ -14,8 +15,15 @@ const StyledMovieTitle = styled.h1`
   color: #ffffff;
 `;
 
-function Movie({ movieDetails }) {
-  console.log('from movie', movieDetails);
+function Movie({ movieDetails, fetchMovie, history }) {
+
+  useEffect(() => {
+    const movieId = history.location.pathname.slice(1);
+    fetchMovie(movieId);
+  }, []);
+
+  console.log('from movie', history.location.pathname.slice(1));
+
   const backdropURL =
     URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
   //  setMovieInfo({
@@ -43,7 +51,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchMovie: (movieId) => dispatch(fetchMovieDetails(movieId)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movie);
