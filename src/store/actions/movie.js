@@ -57,6 +57,8 @@ export const fetchNowPlayingMovies = () => {
 
 export const fetchMovieDetails = (id) => {
   const url = `${URL_DETAIL}${id}?api_key=${API_KEY}`;
+  const credits = `${URL_DETAIL}${id}/videos?api_key=${API_KEY}`;
+  const video = `${URL_DETAIL}${id}?/credits?api_key=${API_KEY}`;
   //id: 605116 (project power)
   return async (dispatch) => {
     const response = await axios.get(url);

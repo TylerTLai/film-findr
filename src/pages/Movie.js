@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../const';
 import { fetchMovieDetails } from '../store/actions/movie';
 
-const StyledHeroBanner = styled.div`
+const StyledHeroBanner = styled.header`
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
     url(${({ imgURL }) => imgURL});
   height: 600px;
@@ -24,6 +24,38 @@ const StyledHeroBanner = styled.div`
     margin-top: 0;
     color: #ffffff;
     font-size: 2em;
+  }
+`;
+
+const StyledStory = styled.div`
+  background-color: #060507;
+  color: white;
+  padding: 4em 8em;
+
+  & h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  & p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+  }
+`;
+
+const StyledCast = styled.div`
+  background-color: #060507;
+  color: white;
+  padding: 4em 8em;
+
+  & h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  & p {
+    font-size: 1.2em;
+    line-height: 1.5em;
   }
 `;
 
@@ -55,7 +87,14 @@ function Movie({ movieDetails, fetchMovie, history }) {
         <h2>{movieDetails.tagline}</h2>
         <h2>{movieDetails.release_date}</h2>
       </StyledHeroBanner>
-      <p>{movieDetails.overview}</p>
+      <StyledStory>
+        <h1>THE STORY</h1>
+        <p>{movieDetails.overview}</p>
+      </StyledStory>
+      <StyledCast>
+        <h1>THE CAST</h1>
+        <p>{movieDetails.overview}</p>
+      </StyledCast>
     </>
   );
 }
