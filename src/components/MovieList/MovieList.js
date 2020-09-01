@@ -36,7 +36,13 @@ const StyledMovie = styled.div`
 
   & img {
     border-radius: 2px;
+    opacity: 1;
     width: 100%;
+    transition: 0.2s ease-in-out;
+  }
+
+  img:hover {
+    opacity: 0.8;
   }
 
   & p {
@@ -44,6 +50,10 @@ const StyledMovie = styled.div`
     font-size: 1em;
     text-transform: uppercase;
     text-align: left;
+  }
+
+  & a {
+    color: white;
   }
 
   & button {
@@ -54,6 +64,12 @@ const StyledMovie = styled.div`
     border: 0;
     border-radius: 5px;
     width: 100%;
+    transition: 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background: #00aaa1;
+    cursor: pointer;
   }
 `;
 
@@ -62,7 +78,7 @@ function MovieList({ title, movies, fetchMovie }) {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
 
     const handleClick = (id) => {
-      fetchMovie(id)
+      fetchMovie(id);
     };
 
     return (
@@ -74,9 +90,9 @@ function MovieList({ title, movies, fetchMovie }) {
               ? movie.title
               : movie.title.slice(0, 13) + '...'}
           </p>
-          <button onClick={() => handleClick(movie.id)}>
-            <Link to={"/" + movie.id}>View Movie</Link>
-          </button>
+          <Link to={'/' + movie.id}>
+            <button onClick={() => handleClick(movie.id)}>View Movie</button>
+          </Link>
         </StyledMovie>
       </div>
     );

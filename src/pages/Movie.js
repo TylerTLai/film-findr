@@ -4,25 +4,36 @@ import styled from 'styled-components';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../const';
 import { fetchMovieDetails } from '../store/actions/movie';
 
-const StyledBanner = styled.div`
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+const StyledHeroBanner = styled.div`
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
     url(${({ imgURL }) => imgURL});
-  height: 100vh;
-`;
+  height: 600px;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
-const StyledMovieTitle = styled.h1`
-  font-size: 5em;
-  color: #ffffff;
+  & h1 {
+    margin: 0;
+    font-size: 4em;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  & h2 {
+    margin-top: 0;
+    color: #ffffff;
+    font-size: 2em;
+  }
 `;
 
 function Movie({ movieDetails, fetchMovie, history }) {
-
   useEffect(() => {
     const movieId = history.location.pathname.slice(1);
     fetchMovie(movieId);
   }, []);
 
-  console.log('from movie', history.location.pathname.slice(1));
+  console.log('from movie', Boolean(movieDetails.tagline));
 
   const backdropURL =
     URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
@@ -37,10 +48,15 @@ function Movie({ movieDetails, fetchMovie, history }) {
   //    trailerKey,
   //  });
   return (
-    <StyledBanner imgURL={backdropURL}>
-      <StyledMovieTitle>{movieDetails.title}</StyledMovieTitle>
-      <h2>{movieDetails.release_date}</h2>
-    </StyledBanner>
+    <>
+      <StyledHeroBanner imgURL={backdropURL}>
+        <h1>{movieDetails.title}</h1>
+        {/* <h2>{Boolean(movieDetails.tagline) ? movieDetails.tagline : ""}</h2> */}
+        <h2>{movieDetails.tagline}</h2>
+        <h2>{movieDetails.release_date}</h2>
+      </StyledHeroBanner>
+      <p>{movieDetails.overview}</p>
+    </>
   );
 }
 
