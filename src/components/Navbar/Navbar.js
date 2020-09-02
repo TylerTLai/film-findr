@@ -9,7 +9,7 @@ const StyledNavbar = styled.nav`
   background-color: #060507;
   color: #bfbec8;
   margin: 0;
-  padding: 1em;
+  padding: .5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
