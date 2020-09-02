@@ -9,21 +9,17 @@ const StyledDetails = styled.div`
   color: white;
 `;
 const StyledBackdrop = styled.div`
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)),
+  background-image: linear-gradient(
+      to right,
+      black .5%,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0)
+    ),
     url(${({ imgURL }) => imgURL});
-  background-size: cover; */
-
-  & img {
-    width: 70vw;
-    /* opacity: 0.7; */
-    background-image: linear-gradient(
-     0%,
-    rgba(0, 0, 0, 0.5) 80%,
-    rgba(0, 0, 0, 0.2) 90%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  }
-  
+  background-size: cover;
+  background-position: center;
+  width: 70vw;
+  background-repeat: no-repeat;
 `;
 
 const StyledTopContainer = styled.div`
@@ -35,13 +31,17 @@ const StyledTopContainer = styled.div`
 
   & ${StyledDetails} {
     grid-area: details;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     padding: 1em;
+
+    & h1 {
+      text-transform: uppercase;
+    }
   }
 
   & ${StyledBackdrop} {
     grid-area: backdrop;
-    border: 1px solid white;
+    /* border: 1px solid white; */
   }
 `;
 
@@ -58,8 +58,6 @@ function Movie({ movieDetails, fetchMovie, history }) {
   console.log('from movie', movieDetails.genres);
 
   const genres = [];
-
-  
 
   const backdropURL =
     URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
@@ -90,7 +88,6 @@ function Movie({ movieDetails, fetchMovie, history }) {
           <p>{movieDetails.overview}</p>
         </StyledDetails>
         <StyledBackdrop imgURL={backdropURL}>
-          <img src={backdropURL} alt={movieDetails.title}/>
         </StyledBackdrop>
       </StyledTopContainer>
     </>
