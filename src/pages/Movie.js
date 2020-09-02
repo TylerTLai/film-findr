@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../const';
 import { fetchMovieDetails } from '../store/actions/movie';
-import { FaStar } from 'react-icons/fa';
+// import { FaStar } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 import theme from '../styles/theme';
+// import { Palette } from 'color-thief-react';
+// import { usePalette } from 'color-thief-react';
 
 const StyledDetails = styled.div`
   color: ${theme.colors.white};
@@ -24,6 +26,7 @@ const StyledDetails = styled.div`
 
   & h1 {
     font-size: 3em;
+    color: ${theme.colors.white};
     text-transform: uppercase;
   }
 
@@ -40,6 +43,10 @@ const StyledDetails = styled.div`
       font-size: 0.8em;
       letter-spacing: 2px;
     }
+  }
+
+  & p {
+    line-height: 2;
   }
 
   & button {
@@ -105,6 +112,7 @@ const StyledBottomContainer = styled.div`
     font-size: 3em;
   }
 `;
+let lume = '';
 
 function Movie({ movieDetails, fetchMovie, history }) {
   useEffect(() => {
@@ -112,7 +120,7 @@ function Movie({ movieDetails, fetchMovie, history }) {
     fetchMovie(movieId);
   }, []);
 
-  console.log('from movie', history);
+  // console.log('from movie', history);
   const genres = [];
 
   const backdropURL =
@@ -123,7 +131,33 @@ function Movie({ movieDetails, fetchMovie, history }) {
       <StyledTopContainer>
         <StyledDetails>
           <BsArrowLeft className="backArrow" onClick={history.goBack} />
-          <h1>{movieDetails.title}</h1>
+
+          {/* <Palette
+            src={backdropURL}
+            crossOrigin="anonymous"
+            format="hex"
+            colorCount={4}
+          >
+            {({ data, loading }) => {
+              if (loading) return 'loading';
+              return (
+                <div>
+                  <h1 style={{ color: data[1] }}>{movieDetails.title}</h1>
+                  <ul>
+                    {data.map((color, index) => (
+                      <li key={index} style={{ color: color }}>
+                        <strong>{color}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }}
+          </Palette> */}
+
+          <h1 style={{ color: `${theme.colors.white}` }}>
+            {movieDetails.title}
+          </h1>
           <h2>{movieDetails.tagline}</h2>
           <button>WATCH TRAILER</button>
 
@@ -133,10 +167,7 @@ function Movie({ movieDetails, fetchMovie, history }) {
             </h3>
             <h3>
               Rating
-              <p>
-                {movieDetails.vote_average}
-                <FaStar color="#ffc93c" />
-              </p>
+              <p>{movieDetails.vote_average} | 10</p>
             </h3>
             <h3>
               Runtime <p>{movieDetails.runtime} mins</p>
