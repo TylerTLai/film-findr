@@ -17,7 +17,7 @@ const StyledDetails = styled.div`
     transition: 0.1s ease-in-out;
 
     &:hover {
-      color: ${theme.colors.orange};
+      color: ${theme.colors.lightTeal};
       cursor: pointer;
     }
   }
@@ -28,7 +28,7 @@ const StyledDetails = styled.div`
   }
 
   & h2 {
-    color: ${theme.colors.orange};
+    color: ${theme.colors.lightTeal};
     font-size: 1.5em;
   }
 
@@ -36,12 +36,30 @@ const StyledDetails = styled.div`
     color: ${theme.colors.gray};
 
     & p {
-      color: ${theme.colors.orange};
+      color: ${theme.colors.lightTeal};
+      font-size: 0.8em;
+      letter-spacing: 2px;
+    }
+  }
+
+  & button {
+    display: inline-block;
+    border: none;
+    color: ${theme.colors.white};
+    padding: 1em 1.5em;
+    background-color: ${theme.colors.teal};
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      background-color: ${theme.colors.lightTeal};
+      cursor: pointer;
     }
   }
 `;
 
 const StyledInfo = styled.div`
+  margin-top: 1em;
   display: grid;
   grid-auto-flow: column;
   grid-gap: 1px;
@@ -104,9 +122,10 @@ function Movie({ movieDetails, fetchMovie, history }) {
     <>
       <StyledTopContainer>
         <StyledDetails>
-        <BsArrowLeft className='backArrow' onClick={history.goBack} />
+          <BsArrowLeft className="backArrow" onClick={history.goBack} />
           <h1>{movieDetails.title}</h1>
           <h2>{movieDetails.tagline}</h2>
+          <button>WATCH TRAILER</button>
 
           <StyledInfo>
             <h3>
