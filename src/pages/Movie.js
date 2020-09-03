@@ -112,7 +112,7 @@ const StyledBottomContainer = styled.div`
     font-size: 3em;
   }
 `;
-let lume = '';
+
 
 function Movie({ movieDetails, fetchMovie, history }) {
   useEffect(() => {

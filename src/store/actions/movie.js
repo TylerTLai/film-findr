@@ -57,11 +57,24 @@ export const fetchNowPlayingMovies = () => {
 
 export const fetchMovieDetails = (id) => {
   const url = `${URL_DETAIL}${id}?api_key=${API_KEY}`;
-  const credits = `${URL_DETAIL}${id}/videos?api_key=${API_KEY}`;
-  const video = `${URL_DETAIL}${id}?/credits?api_key=${API_KEY}`;
+  const creditsUrl = `${URL_DETAIL}${id}/videos?api_key=${API_KEY}`;
+  const videosUrl = `${URL_DETAIL}${id}?/credits?api_key=${API_KEY}`;
   //id: 605116 (project power)
+
   return async (dispatch) => {
     const response = await axios.get(url);
+    const credits = await axios.get(creditsUrl);
+
+    console.log('credits', credits);
+
+    // const [movie, video, credits] = await Promise.all([
+    //   axios.get(url),
+    //   axios.get(creditsUrl),
+    //   axios.get(videosUrl),
+    // ]);
+
+    // console.log('movie actions', movie, video, credits)
+
     dispatch({
       type: FETCH_MOVIE_DETAILS,
       payload: response.data,
