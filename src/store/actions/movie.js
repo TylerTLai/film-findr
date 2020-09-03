@@ -12,6 +12,8 @@ export const FETCH_MOST_POPULAR_MOVIES = 'FETCH_MOST_POPULAR_MOVIES';
 export const FETCH_TOP_RATED_MOVIES = 'FETCH_TOP_RATED_MOVIES';
 export const FETCH_NOW_PLAYING_MOVIES = 'FETCH_NOW_PLAYING_MOVIES';
 export const FETCH_MOVIE_DETAILS = 'FETCH_MOVIE_DETAILS';
+export const FETCH_CREDITS = 'FETCH_CREDITS';
+export const FETCH_VIDEOS = 'FETCH_VIDEOS';
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 
@@ -57,26 +59,37 @@ export const fetchNowPlayingMovies = () => {
 
 export const fetchMovieDetails = (id) => {
   const url = `${URL_DETAIL}${id}?api_key=${API_KEY}`;
-  const creditsUrl = `${URL_DETAIL}${id}/videos?api_key=${API_KEY}`;
-  const videosUrl = `${URL_DETAIL}${id}?/credits?api_key=${API_KEY}`;
   //id: 605116 (project power)
 
   return async (dispatch) => {
     const response = await axios.get(url);
-    const credits = await axios.get(creditsUrl);
-
-    console.log('credits', credits);
-
-    // const [movie, video, credits] = await Promise.all([
-    //   axios.get(url),
-    //   axios.get(creditsUrl),
-    //   axios.get(videosUrl),
-    // ]);
-
-    // console.log('movie actions', movie, video, credits)
 
     dispatch({
       type: FETCH_MOVIE_DETAILS,
+      payload: response.data,
+    });
+  };
+};
+
+export const fetchVideos = (id) => {
+  const videosUrl = `${URL_DETAIL}${id}/videos?api_key=${API_KEY}`;
+  return async (dispatch) => {
+    const response = await axios.get(videosUrl);
+    // console.log('from actions video,', videosUrl)
+    dispatch({
+      type: FETCH_VIDEOS,
+      payload: response.data.results,
+    });
+  };
+};
+
+export const fetchCredits = (id) => {
+  const creditsUrl = `${URL_DETAIL}${id}/credits?api_key=${API_KEY}`;
+
+  return async (dispatch) => {
+    const response = await axios.get(creditsUrl);
+    dispatch({
+      type: FETCH_CREDITS,
       payload: response.data,
     });
   };

@@ -4,6 +4,8 @@ import {
   FETCH_TOP_RATED_MOVIES,
   FETCH_NOW_PLAYING_MOVIES,
   FETCH_MOVIE_DETAILS,
+  FETCH_VIDEOS,
+  FETCH_CREDITS,
 } from '../actions/movie';
 
 const initialState = {
@@ -12,6 +14,8 @@ const initialState = {
   mostPopular: [],
   nowPlaying: [],
   movieDetails: [],
+  credits: [],
+  videos: []
 };
 
 export const getMovies = (state = initialState, action) => {
@@ -30,6 +34,12 @@ export const getMovies = (state = initialState, action) => {
 
     case FETCH_MOVIE_DETAILS:
       return { ...state, movieDetails: action.payload };
+   
+      case FETCH_CREDITS:
+      return { ...state, credits: action.payload };
+   
+      case FETCH_VIDEOS:
+      return { ...state, videos: action.payload };
 
     default:
       return state;

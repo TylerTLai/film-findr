@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../const';
-import { fetchMovieDetails } from '../store/actions/movie';
+import {
+  fetchMovieDetails,
+  fetchCredits,
+  fetchVideos,
+} from '../store/actions/movie';
 // import { FaStar } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 import theme from '../styles/theme';
@@ -113,15 +120,29 @@ const StyledBottomContainer = styled.div`
   }
 `;
 
-
-function Movie({ movieDetails, fetchMovie, history }) {
+function Movie({
+  movieDetails,
+  fetchMovie,
+  fetchCredits,
+  fetchVideos,
+  credits,
+  videos,
+  history,
+}) {
   useEffect(() => {
     const movieId = history.location.pathname.slice(1);
     fetchMovie(movieId);
+    fetchCredits(movieId);
+    fetchVideos(movieId);
   }, []);
 
-  // console.log('from movie', history);
-  const genres = [];
+  // console.log('from movie credits', credits);
+  console.log('from movie credit', credits.cast);
+  // const genres = [];
+  const casts = credits.cast
+    .slice(0, 8)
+    .filter((cast) => cast.profile_path !== null);
+  // const casts = credits.cast.map(cast => console.log(cast))
 
   const backdropURL =
     URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
@@ -191,12 +212,16 @@ function Movie({ movieDetails, fetchMovie, history }) {
 const mapStateToProps = (state) => {
   return {
     movieDetails: state.getMovies.movieDetails,
+    credits: state.getMovies.credits,
+    videos: state.getMovies.videos,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovie: (movieId) => dispatch(fetchMovieDetails(movieId)),
+    fetchCredits: (movieId) => dispatch(fetchCredits(movieId)),
+    fetchVideos: (movieId) => dispatch(fetchVideos(movieId)),
   };
 };
 
