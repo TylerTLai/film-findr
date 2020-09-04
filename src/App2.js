@@ -12,10 +12,10 @@ function App2() {
     <>
       <Navbar />
       <Switch>
-        <Route exact path="/:movie_id" component={Movie} />
         <Route exact path="/results" component={Results} />
+        <Route exact path="/:movie_id" component={Movie} />
         <Route exact path="/" component={Home} />
-        {/* <Route component={Page404} /> */}
+        <Route component={Page404} />
       </Switch>
     </>
   );

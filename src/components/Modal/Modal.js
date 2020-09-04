@@ -78,7 +78,7 @@ const Modal = ({ showModal, setShowModal, trailerKey }) => {
                 title="video"
                 src={`https://www.youtube.com/embed/${trailerKey}?controls=1`}
                 frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; gyroscope;"
                 allowFullScreen
                 modestbranding="1"
               ></iframe>

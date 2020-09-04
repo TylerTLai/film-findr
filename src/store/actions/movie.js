@@ -63,6 +63,8 @@ export const fetchMovieDetails = (id) => {
   const url = `${URL_DETAIL}${id}?api_key=${API_KEY}`;
   //id: 605116 (project power)
   // console.log('from fetchmoviedetails', id);
+
+  // when you redirect to a new page, it doesn't have the id to get the movie details...
   return async (dispatch) => {
     try {
       const response = await axios.get(url);

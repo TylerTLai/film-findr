@@ -132,9 +132,9 @@ function Movie({
   ...props
 }) {
   useEffect(() => {
-    // const movieId = history.location.pathname.slice(1);
-    const movieId = props.match.params.movie_id;
-
+    const movieId = history.location.pathname.slice(1);
+    // const movieId = props.match.params.movie_id;
+    // debugger;
     fetchMovie(movieId);
     fetchVideos(movieId);
     fetchCredits(movieId);
