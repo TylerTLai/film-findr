@@ -99,7 +99,7 @@ const StyledTopContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr, 2fr;
   grid-template-areas: 'details backdrop';
-  height: 100%;
+  flex: 1;
 
   & ${StyledDetails} {
     grid-area: details;
@@ -115,6 +115,7 @@ const StyledBottomContainer = styled.div`
   background-color: ${theme.colors.black};
   color: ${theme.colors.white};
   padding: 2em;
+  flex: 1;
 
   & h1 {
     font-size: 3em;

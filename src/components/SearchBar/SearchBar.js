@@ -48,14 +48,12 @@ function SearchBar({ movie, findMovie }) {
     e.preventDefault();
     findMovie(query);
     history.push('/results');
+    setQuery('')
   };
 
   const handleChange = (e) => {
     setQuery(e.target.value);
-    // console.log('search query', query);
   };
-
-  console.log('after the search', movie);
 
   return (
     <StyledSearchContainer onSubmit={searchMovies}>

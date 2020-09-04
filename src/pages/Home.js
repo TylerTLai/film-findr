@@ -13,6 +13,7 @@ import {
 
 const StyledMain = styled.main`
   background-color: ${theme.colors.black};
+  flex: 1;
 `;
 
 function Home({

@@ -77,9 +77,9 @@ function MovieList({ title, movies, fetchMovie }) {
   const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
 
-    const handleClick = (id) => {
-      fetchMovie(id);
-    };
+    // const handleClick = (id) => {
+    //   fetchMovie(id);
+    // };
 
     return (
       <div key={movie.id}>
@@ -93,7 +93,7 @@ function MovieList({ title, movies, fetchMovie }) {
               : movie.title.slice(0, 13) + '...'}
           </p>
           <Link to={'/' + movie.id}>
-            <button onClick={() => handleClick(movie.id)}>View Movie</button>
+            <button >View Movie</button>
           </Link>
         </StyledMovie>
       </div>
