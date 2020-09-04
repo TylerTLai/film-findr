@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { FiSearch } from 'react-icons/fi';
+import { connect } from 'react-redux';
+import { searchMovie } from '../../store/actions/movie';
+import { useHistory } from 'react-router-dom';
 
 const StyledSearchContainer = styled.form`
-  /* border: 1px solid white; */
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* display: grid;
-  margin: 0 2em;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 1.5em;
-  justify-content: center;
-  align-items: center; */
 `;
 
 const StyledSearchInput = styled.input`
   font-size: 0.9em;
   height: 30px;
   padding: 0.15em 0.8em;
-  /* line-height: 1em; */
   border: 0;
   border-radius: 3px 0 0 3px;
   width: 70%;
@@ -37,7 +31,7 @@ const StyledSearchButton = styled.button`
   border-radius: 0 3px 3px 0;
   height: 34px;
   transition: 0.2s ease-in-out;
-  
+
   &:hover,
   &:focus,
   &:active {
@@ -46,12 +40,32 @@ const StyledSearchButton = styled.button`
   }
 `;
 
-function SearchBar() {
+function SearchBar({ movie, findMovie }) {
+  const history = useHistory();
+  const [query, setQuery] = useState('');
+
+  const searchMovies = (e) => {
+    e.preventDefault();
+    findMovie(query);
+    history.push('/results');
+  };
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+    // console.log('search query', query);
+  };
+
+  console.log('after the search', movie);
+
   return (
-    <StyledSearchContainer>
+    <StyledSearchContainer onSubmit={searchMovies}>
       <StyledSearchInput
         type="text"
         placeholder="Find your favorite movies..."
+        autoComplete="off"
+        required={true}
+        value={query}
+        onChange={handleChange}
       ></StyledSearchInput>
       <StyledSearchButton type="submit">
         <FiSearch />
@@ -60,4 +74,16 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+  return {
+    movie: state.getMovies.searchedMovie,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    findMovie: (searchTerm) => dispatch(searchMovie(searchTerm)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

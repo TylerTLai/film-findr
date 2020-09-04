@@ -6,6 +6,7 @@ import {
   FETCH_MOVIE_DETAILS,
   FETCH_VIDEOS,
   FETCH_CREDITS,
+  SEARCH_MOVIE,
 } from '../actions/movie';
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
   nowPlaying: [],
   movieDetails: [],
   credits: [],
-  videos: []
+  videos: [],
+  searchedMovie: [],
 };
 
 export const getMovies = (state = initialState, action) => {
@@ -34,12 +36,15 @@ export const getMovies = (state = initialState, action) => {
 
     case FETCH_MOVIE_DETAILS:
       return { ...state, movieDetails: action.payload };
-   
-      case FETCH_CREDITS:
+
+    case FETCH_CREDITS:
       return { ...state, credits: action.payload };
-   
-      case FETCH_VIDEOS:
+
+    case FETCH_VIDEOS:
       return { ...state, videos: action.payload };
+
+    case SEARCH_MOVIE:
+      return { ...state, searchedMovie: action.payload };
 
     default:
       return state;

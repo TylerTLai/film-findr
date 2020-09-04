@@ -5,6 +5,7 @@ import {
   URL_TOP_RATED,
   URL_NOW_PLAYING,
   URL_DETAIL,
+  URL_MOVIE_SEARCH,
 } from '../../const';
 
 export const FETCH_UPCOMING_MOVIES = 'FETCH_MOVIES';
@@ -14,6 +15,7 @@ export const FETCH_NOW_PLAYING_MOVIES = 'FETCH_NOW_PLAYING_MOVIES';
 export const FETCH_MOVIE_DETAILS = 'FETCH_MOVIE_DETAILS';
 export const FETCH_CREDITS = 'FETCH_CREDITS';
 export const FETCH_VIDEOS = 'FETCH_VIDEOS';
+export const SEARCH_MOVIE = 'SEARCH_MOVIE';
 
 const API_KEY = process.env.REACT_APP_TMDB_KEY;
 
@@ -60,14 +62,18 @@ export const fetchNowPlayingMovies = () => {
 export const fetchMovieDetails = (id) => {
   const url = `${URL_DETAIL}${id}?api_key=${API_KEY}`;
   //id: 605116 (project power)
-console.log('from fetchmoviedetails', id)
+  // console.log('from fetchmoviedetails', id);
   return async (dispatch) => {
-    const response = await axios.get(url);
+    try {
+      const response = await axios.get(url);
 
-    dispatch({
-      type: FETCH_MOVIE_DETAILS,
-      payload: response.data,
-    });
+      dispatch({
+        type: FETCH_MOVIE_DETAILS,
+        payload: response.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
@@ -91,6 +97,17 @@ export const fetchCredits = (id) => {
     dispatch({
       type: FETCH_CREDITS,
       payload: response.data,
+    });
+  };
+};
+
+export const searchMovie = (query) => {
+  const searchMovieUrl = `${URL_MOVIE_SEARCH}${API_KEY}&query=${query}`;
+  return async (dispatch) => {
+    const response = await axios.get(searchMovieUrl);
+    dispatch({
+      type: SEARCH_MOVIE,
+      payload: response.data.results,
     });
   };
 };
