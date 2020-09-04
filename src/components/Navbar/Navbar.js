@@ -2,16 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import SearchBar from '../SearchBar';
+// import SearchBar from '../SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 import { ReactComponent as ReactLogo } from '../../assets/logo.svg';
 
 const StyledNavbar = styled.nav`
+border: 1px solid red;
   background-color: #060507;
   color: #bfbec8;
   margin: 0;
   padding: .5em;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   font-size: 1rem;
 
