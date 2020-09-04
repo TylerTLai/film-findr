@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import theme from '../../styles/theme'
+import theme from '../../styles/theme';
 
 import {
   fetchUpcomingMovies,
@@ -54,6 +54,14 @@ const StyledMovieText = styled.div`
     padding: 12px 20px;
     border: 1px solid ${theme.colors.white};
     border-radius: 5px;
+    transition: 0.2s ease-in-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: ${theme.colors.lightTeal};
+      cursor: pointer;
+    }
   }
 `;
 

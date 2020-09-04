@@ -90,9 +90,9 @@ function Navbar() {
       </StyledSearchContainer>
 
       <StyledLinksContainer>
-        <NavLink to="login">
+        {/* <NavLink to="login">
           <button>Sign In</button>
-        </NavLink>
+        </NavLink> */}
       </StyledLinksContainer>
     </StyledNavbar>
   );

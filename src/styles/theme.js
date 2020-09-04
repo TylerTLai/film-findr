@@ -3,7 +3,7 @@ const BG = '#060507';
 const theme = {
   colors: {
     white: '#e6f1ff',
-    teal: '#136f6a',
+    teal: '#606c88',
     lightTeal: '#00aaa1',
     black: BG,
     orange: '#fb601d',
