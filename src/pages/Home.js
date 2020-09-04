@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Carousel from '../components/Carousel/Carousel';
 import MovieList from '../components/MovieList/MovieList';
 import styled from 'styled-components';
+import theme from '../styles/theme';
 
 import {
   fetchMostPopularMovies,
@@ -11,8 +12,7 @@ import {
 } from '../store/actions/movie';
 
 const StyledMain = styled.main`
-  background-color: #060507;
-  padding: 50px;
+  background-color: ${theme.colors.black};
 `;
 
 function Home({
@@ -21,7 +21,7 @@ function Home({
   topRatedMovies,
   getTopRatedMovies,
   nowPlayingMovies,
-  getNowPlayingMovies
+  getNowPlayingMovies,
 }) {
   useEffect(() => {
     getPopularMovies();

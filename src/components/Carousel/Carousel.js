@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import theme from '../../styles/theme'
 
 import {
   fetchUpcomingMovies,
@@ -26,12 +27,12 @@ const StyledMovieText = styled.div`
   top: 65%;
   left: 60%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: ${theme.colors.white};
 
   & h1 {
     margin-top: 0;
     margin-bottom: 0.5em;
-    color: white;
+    color: ${theme.colors.white};
     font-size: 2.5em;
     font-weight: bolder;
     letter-spacing: 1.5px;
@@ -47,11 +48,11 @@ const StyledMovieText = styled.div`
   }
 
   & button {
-    background: black;
-    color: white;
+    background: ${theme.colors.black};
+    color: ${theme.colors.white};
     font-size: 1.2em;
     padding: 12px 20px;
-    border: 1px solid white;
+    border: 1px solid ${theme.colors.white};
     border-radius: 5px;
   }
 `;

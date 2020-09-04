@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 
 const StyledSearchContainer = styled.form`
-border: 1px solid white;
+  /* border: 1px solid white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-display: flex;
   /* display: grid;
   margin: 0 2em;
   grid-template-columns: 1fr auto;
@@ -16,13 +18,13 @@ display: flex;
 
 const StyledSearchInput = styled.input`
   font-size: 1em;
-  height: 2em;
-  padding: 0.3em 0.5em;
+  height: 30px;
+  padding: 0.3em 0.8em;
   line-height: 1em;
-  border-radius: 5px;
-  border: 1px solid #999;
-  transition: 0.3s;
-  background-color: #121212;
+  border: 0;
+  border-radius: 3px 0 0 3px;
+  width: 50%;
+  background-color: ${theme.colors.white};
 `;
 
 const StyledSearchButton = styled.button`
@@ -31,9 +33,8 @@ const StyledSearchButton = styled.button`
   font-size: 1em;
   padding: 12px 20px;
   border: 0;
-  border-radius: 5px;
-  width: 100%;
-  transition: 0.2s ease-in-out;
+  border-radius: 0 3px 3px 0;
+  height: 39px;
 `;
 
 function SearchBar() {

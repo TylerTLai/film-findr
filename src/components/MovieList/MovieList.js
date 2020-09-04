@@ -11,6 +11,10 @@ import { motion } from 'framer-motion';
 import Arrows from '../Arrows/Arrows';
 import theme from '../../styles/theme';
 
+const StyledMovieListContainer = styled.main`
+  padding: 0 0 0 50px;
+`;
+
 const StyledMovieSection = styled.div`
   background-color: ${theme.colors.darkGray};
   padding: 2em 1em 2em 1em;
@@ -69,7 +73,6 @@ const StyledMovie = styled(motion.div)`
   }
 `;
 
-
 function MovieList({ title, movies, fetchMovie }) {
   const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
@@ -80,7 +83,9 @@ function MovieList({ title, movies, fetchMovie }) {
 
     return (
       <div key={movie.id}>
-        <StyledMovie whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}>
+        <StyledMovie
+          whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}
+        >
           <img src={posterURL} alt={movie.title} />
           <p>
             {movie.title.length <= 15
@@ -134,12 +139,12 @@ function MovieList({ title, movies, fetchMovie }) {
   };
 
   return (
-    <>
+    <StyledMovieListContainer>
       <StyledMovieCategory>{title}</StyledMovieCategory>
       <StyledMovieSection>
         <Slider {...settings}>{movieCollection}</Slider>
       </StyledMovieSection>
-    </>
+    </StyledMovieListContainer>
   );
 }
 
