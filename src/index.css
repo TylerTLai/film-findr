@@ -12,6 +12,22 @@ body {
   letter-spacing: 1px;
 }
 
+.sc3::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.sc3::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+.sc3::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+
 p {
   font-size: 1em;
   letter-spacing: 1px;
