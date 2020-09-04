@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { URL_IMG, IMG_SIZE_LARGE } from '../../const';
 import { connect } from 'react-redux';
 import { fetchMovieDetails } from '../../store/actions/movie';
-
+import { motion } from 'framer-motion';
 import Arrows from '../Arrows/Arrows';
 
 const StyledMovieSection = styled.div`
@@ -23,7 +23,7 @@ const StyledMovieCategory = styled.h1`
   margin-top: 75px;
 `;
 
-const StyledMovie = styled.div`
+const StyledMovie = styled(motion.div)`
   /* display: flex;
   flex-direction: column;
   align-items: left; */
@@ -38,11 +38,6 @@ const StyledMovie = styled.div`
     border-radius: 2px;
     opacity: 1;
     width: 100%;
-    transition: 0.2s ease-in-out;
-
-    &:hover {
-      opacity: 0.8;
-    }
   }
 
   & p {
@@ -73,6 +68,7 @@ const StyledMovie = styled.div`
   }
 `;
 
+
 function MovieList({ title, movies, fetchMovie }) {
   const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
@@ -83,7 +79,7 @@ function MovieList({ title, movies, fetchMovie }) {
 
     return (
       <div key={movie.id}>
-        <StyledMovie>
+        <StyledMovie whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}>
           <img src={posterURL} alt={movie.title} />
           <p>
             {movie.title.length <= 15

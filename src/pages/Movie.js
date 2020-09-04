@@ -15,6 +15,7 @@ import { BsArrowLeft } from 'react-icons/bs';
 import theme from '../styles/theme';
 // import { Palette } from 'color-thief-react';
 // import { usePalette } from 'color-thief-react';
+import Modal from '../components/Modal/Modal';
 
 const StyledDetails = styled.div`
   color: ${theme.colors.white};
@@ -128,27 +129,47 @@ function Movie({
   credits,
   videos,
   history,
+  ...props
 }) {
   useEffect(() => {
-    const movieId = history.location.pathname.slice(1);
+    // const movieId = history.location.pathname.slice(1);
+    const movieId = props.match.params.movie_id;
+
     fetchMovie(movieId);
-    fetchCredits(movieId);
     fetchVideos(movieId);
+    fetchCredits(movieId);
   }, []);
 
-  // console.log('from movie credits', credits);
-  console.log('from movie credit', credits.cast);
+  const [showModal, setShowModal] = useState(false);
+
+  // console.log('from movie credit', credits.cast);
+  // console.log('from movie vide', videos);
+  // const cast = credits.map((castMember) => castMember);
+
+  const trailerKey =
+    videos !== 'undefined' && videos.length > 0
+      ? videos.filter((video) => video.site === 'YouTube')[0].key
+      : 'no key';
   // const genres = [];
-  const casts = credits.cast
-    .slice(0, 8)
-    .filter((cast) => cast.profile_path !== null);
+  // const casts = credits.cast
+  //   .slice(0, 8)
+  //   .filter((cast) => cast.profile_path !== null);
   // const casts = credits.cast.map(cast => console.log(cast))
 
   const backdropURL =
     URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
 
+  const showTrailer = () => {
+    setShowModal((prevState) => !prevState);
+  };
+
   return (
     <>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        trailerKey={trailerKey}
+      />
       <StyledTopContainer>
         <StyledDetails>
           <BsArrowLeft className="backArrow" onClick={history.goBack} />
@@ -180,7 +201,7 @@ function Movie({
             {movieDetails.title}
           </h1>
           <h2>{movieDetails.tagline}</h2>
-          <button>WATCH TRAILER</button>
+          <button onClick={showTrailer}>WATCH TRAILER</button>
 
           <StyledInfo>
             <h3>
@@ -202,8 +223,8 @@ function Movie({
       </StyledTopContainer>
       <StyledBottomContainer>
         <h1>Cast & Crew</h1>
+        {/* <p>{cast}</p> */}
         <h1>Images</h1>
-        <h1>Videos</h1>
       </StyledBottomContainer>
     </>
   );
