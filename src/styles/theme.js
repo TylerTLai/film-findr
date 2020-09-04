@@ -8,6 +8,8 @@ const theme = {
     black: BG,
     orange: '#fb601d',
     gray: '#99B2B4',
+    darkGray: '#14171a',
+    midGray: '#21272d',
   },
 };
 

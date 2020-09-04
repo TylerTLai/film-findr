@@ -9,9 +9,11 @@ import { connect } from 'react-redux';
 import { fetchMovieDetails } from '../../store/actions/movie';
 import { motion } from 'framer-motion';
 import Arrows from '../Arrows/Arrows';
+import theme from '../../styles/theme';
+
 
 const StyledMovieSection = styled.div`
-  background-color: #14171a;
+  background-color: ${theme.colors.darkGray};
   padding: 2em 1em 2em 1em;
   display: flex;
   flex-direction: column;
@@ -19,7 +21,7 @@ const StyledMovieSection = styled.div`
 `;
 
 const StyledMovieCategory = styled.h1`
-  color: #eeeeee;
+  color: ${theme.colors.white};
   margin-top: 75px;
 `;
 
@@ -27,7 +29,7 @@ const StyledMovie = styled(motion.div)`
   /* display: flex;
   flex-direction: column;
   align-items: left; */
-  background-color: #21272d;
+  background-color: ${theme.colors.midGray};
   /* border: 2px solid #373b41; */
   margin-left: 10px;
   margin-right: 10px;
@@ -41,19 +43,19 @@ const StyledMovie = styled(motion.div)`
   }
 
   & p {
-    color: #eeeeee;
+    color: ${theme.colors.white};
     font-size: 1em;
     text-transform: uppercase;
     text-align: left;
   }
 
   & a {
-    color: white;
+    color: ${theme.colors.white};
   }
 
   & button {
-    background: #136f6a;
-    color: white;
+    background: ${theme.colors.teal};
+    color: ${theme.colors.white};
     font-size: 1em;
     padding: 12px 20px;
     border: 0;
@@ -62,7 +64,7 @@ const StyledMovie = styled(motion.div)`
     transition: 0.2s ease-in-out;
 
     &:hover {
-      background: #00aaa1;
+      background: ${theme.colors.lightTeal};
       cursor: pointer;
     }
   }
