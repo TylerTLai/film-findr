@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { fetchUpcomingMovies } from '../../store/actions/movie';
+import {
+  fetchUpcomingMovies,
+  fetchMovieDetails,
+} from '../../store/actions/movie';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../../const';
 
 const StyledHeader = styled.header`
@@ -52,7 +56,7 @@ const StyledMovieText = styled.div`
   }
 `;
 
-function Carousel({ movies, getMovies }) {
+function Carousel({ movies, getMovies, fetchMovie }) {
   // console.log('carousel', movies);
 
   useEffect(() => {
@@ -61,9 +65,12 @@ function Carousel({ movies, getMovies }) {
 
   const topMovies = movies.map((movie) => {
     const backdropURL = URL_IMG + BACKDROP_SIZE_ORIGINAL + movie.backdrop_path;
-    const handleClick = () => {
-      console.log('clicked');
+
+    const handleClick = (id) => {
+      fetchMovie(id);
+      console.log('from carousel', id);
     };
+
     return (
       <div key={movie.id}>
         <StyledHeader imgURL={backdropURL}>
@@ -71,7 +78,9 @@ function Carousel({ movies, getMovies }) {
             <h3>COMING SOON</h3>
             <h1>{movie.title}</h1>
             <p>RELEASE DATE: {movie.release_date}</p>
-            <button onClick={handleClick}>View Movie</button>
+            <Link to={'/' + movie.id}>
+              <button onClick={() => handleClick(movie.id)}>View Movie</button>
+            </Link>
           </StyledMovieText>
         </StyledHeader>
       </div>
@@ -106,6 +115,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getMovies: () => dispatch(fetchUpcomingMovies()),
+    fetchMovie: (movieId) => dispatch(fetchMovieDetails(movieId)),
   };
 };
 

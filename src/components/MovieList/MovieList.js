@@ -11,7 +11,6 @@ import { motion } from 'framer-motion';
 import Arrows from '../Arrows/Arrows';
 import theme from '../../styles/theme';
 
-
 const StyledMovieSection = styled.div`
   background-color: ${theme.colors.darkGray};
   padding: 2em 1em 2em 1em;

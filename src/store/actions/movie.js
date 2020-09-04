@@ -60,7 +60,7 @@ export const fetchNowPlayingMovies = () => {
 export const fetchMovieDetails = (id) => {
   const url = `${URL_DETAIL}${id}?api_key=${API_KEY}`;
   //id: 605116 (project power)
-
+console.log('from fetchmoviedetails', id)
   return async (dispatch) => {
     const response = await axios.get(url);
 

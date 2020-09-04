@@ -222,9 +222,9 @@ function Movie({
         <StyledBackdrop imgURL={backdropURL}></StyledBackdrop>
       </StyledTopContainer>
       <StyledBottomContainer>
-        <h1>Cast & Crew</h1>
+        {/* <h1>Cast & Crew</h1> */}
         {/* <p>{cast}</p> */}
-        <h1>Images</h1>
+        {/* <h1>Images</h1> */}
       </StyledBottomContainer>
     </>
   );
