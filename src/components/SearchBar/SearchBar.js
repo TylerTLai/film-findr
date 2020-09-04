@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { FiSearch } from 'react-icons/fi';
 
 const StyledSearchContainer = styled.form`
   /* border: 1px solid white; */
@@ -17,13 +18,13 @@ const StyledSearchContainer = styled.form`
 `;
 
 const StyledSearchInput = styled.input`
-  font-size: 1em;
+  font-size: 0.9em;
   height: 30px;
-  padding: 0.3em 0.8em;
-  line-height: 1em;
+  padding: 0.15em 0.8em;
+  /* line-height: 1em; */
   border: 0;
   border-radius: 3px 0 0 3px;
-  width: 50%;
+  width: 70%;
   background-color: ${theme.colors.white};
 `;
 
@@ -31,17 +32,30 @@ const StyledSearchButton = styled.button`
   background: ${theme.colors.teal};
   color: ${theme.colors.white};
   font-size: 1em;
-  padding: 12px 20px;
+  padding: 10px 20px 20px 20px;
   border: 0;
   border-radius: 0 3px 3px 0;
-  height: 39px;
+  height: 34px;
+  transition: 0.2s ease-in-out;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    background: ${theme.colors.lightTeal};
+    cursor: pointer;
+  }
 `;
 
 function SearchBar() {
   return (
     <StyledSearchContainer>
-      <StyledSearchInput type="text"></StyledSearchInput>
-      <StyledSearchButton type="submit">Search</StyledSearchButton>
+      <StyledSearchInput
+        type="text"
+        placeholder="Find your favorite movies..."
+      ></StyledSearchInput>
+      <StyledSearchButton type="submit">
+        <FiSearch />
+      </StyledSearchButton>
     </StyledSearchContainer>
   );
 }

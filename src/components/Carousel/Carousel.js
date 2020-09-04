@@ -14,7 +14,7 @@ import {
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../../const';
 
 const StyledHeader = styled.header`
-  height: 550px;
+  height: 570px;
   background-size: cover;
   margin-top: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
