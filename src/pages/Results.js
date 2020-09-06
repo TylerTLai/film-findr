@@ -20,6 +20,7 @@ const StyledResultsContainer = styled.main`
   & .backArrow {
     color: ${colors.gray};
     font-size: ${fontSizes.xl};
+    margin: 10px;
 
     &:hover {
       color: ${colors.liteTeal};
@@ -99,9 +100,7 @@ function Results({ searchResults, findMovie, history }) {
             <AltPoster />
           )}
           <StyledMovieTitle>
-            {movie.title.length <= 15
-              ? movie.title
-              : movie.title.slice(0, 13) + '...'}
+            {movie.title}
           </StyledMovieTitle>
           <StyledMovieButton>
             <Link to={'/' + movie.id}>

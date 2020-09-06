@@ -10,13 +10,15 @@ import {
   fetchCredits,
   fetchVideos,
 } from '../store/actions/movie';
-// import { FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 import theme from '../styles/theme';
 import Button from '../styles/Button';
 // import { Palette } from 'color-thief-react';
 // import { usePalette } from 'color-thief-react';
 import Modal from '../components/Modal/Modal';
+import { ReactComponent as AltPoster } from '../assets/poster.svg';
+
 
 const { colors, fontSizes } = theme;
 
@@ -128,6 +130,7 @@ function Movie({
   }, []);
 
   const [showModal, setShowModal] = useState(false);
+  // const [star, setStar] = useState(1);
 
   const trailerKey =
     videos !== 'undefined' && videos.length > 0
@@ -144,6 +147,14 @@ function Movie({
 
   const showTrailer = () => {
     setShowModal((prevState) => !prevState);
+  };
+
+  const convertRuntime = (num) => {
+    let hours = num / 60;
+    let rhours = Math.floor(hours);
+    let minutes = (hours - rhours) * 60;
+    let rminutes = Math.round(minutes);
+    return rhours + 'h ' + rminutes + 'm';
   };
 
   return (
@@ -193,14 +204,22 @@ function Movie({
               <p>{movieDetails.vote_average} | 10</p>
             </h3>
             <h3>
-              Runtime <p>{movieDetails.runtime} mins</p>
+              Runtime <p>{convertRuntime(movieDetails.runtime)}</p>
             </h3>
           </StyledInfo>
 
           <h3>Plot</h3>
           <p>{movieDetails.overview}</p>
         </StyledDetails>
-        <StyledBackdrop imgURL={backdropURL}></StyledBackdrop>
+
+        {movieDetails.backdrop_path ? (
+          <StyledBackdrop
+            imgURL={backdropURL}
+            onClick={showTrailer}
+          ></StyledBackdrop>
+        ) : (
+          <AltPoster />
+        )}
       </StyledTopContainer>
       <StyledBottomContainer>
         {/* <h1>Cast & Crew</h1> */}
