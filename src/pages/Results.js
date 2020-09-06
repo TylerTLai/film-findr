@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { URL_IMG, IMG_SIZE_LARGE } from '../const';
 import { Link } from 'react-router-dom';
 import { fetchMovieDetails } from '../store/actions/movie';
+import { ReactComponent as Masks } from '../assets/masks.svg';
 
 const { colors, fontSizes } = theme;
 
@@ -16,22 +17,24 @@ const StyledMovie = styled(motion.div)`
   margin-right: 10px;
   padding: 20px 10px;
   border-radius: 3px;
+  flex: 1;
 
-  & img {
-    border-radius: 2px;
-    opacity: 1;
-    width: 100%;
-  }
+    & img {
+      border-radius: 2px;
+      opacity: 1;
+      width: 100%;
+    }
 
-  & p {
-    color: ${colors.white};
-    font-size: ${fontSizes.md};
-    text-transform: uppercase;
-    text-align: left;
-  }
+    & p {
+      color: ${colors.white};
+      font-size: ${fontSizes.md};
+      text-transform: uppercase;
+      text-align: left;
+    }
 
-  & a {
-    color: ${colors.white};
+    & a {
+      color: ${colors.white};
+    }
   }
 `;
 
@@ -50,11 +53,15 @@ function Results({ searchResults, fetchMovie, history }) {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
 
     return (
-      <div key={movie.id}>
+      <div key={movie.id} style={{display: 'flex', width: '100%'}}>
         <StyledMovie
           whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}
         >
-          <img src={posterURL} alt={movie.title} />
+          {movie.poster_path ? (
+            <img src={posterURL} alt={movie.title + ' poster'} />
+          ) : (
+            <Masks />
+          )}
           <p>
             {movie.title.length <= 15
               ? movie.title

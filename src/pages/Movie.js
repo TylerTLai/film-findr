@@ -139,8 +139,7 @@ function Movie({
   //   .filter((cast) => cast.profile_path !== null);
   // const casts = credits.cast.map(cast => console.log(cast))
 
-  const backdropURL =
-    URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
+  const backdropURL = URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
 
   const showTrailer = () => {
     setShowModal((prevState) => !prevState);
