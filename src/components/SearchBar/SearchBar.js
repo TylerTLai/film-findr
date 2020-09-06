@@ -37,7 +37,11 @@ function SearchBar({ movie, findMovie }) {
   const searchMovies = (e) => {
     e.preventDefault();
     findMovie(query);
-    history.push('/results');
+
+    history.push({
+      pathname: '/results',
+      search: '?search=' + query,
+    });
     setQuery('');
   };
 

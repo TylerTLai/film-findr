@@ -6,7 +6,9 @@ import Button from '../styles/Button';
 import { motion } from 'framer-motion';
 import { URL_IMG, IMG_SIZE_LARGE } from '../const';
 import { Link } from 'react-router-dom';
-import { fetchMovieDetails } from '../store/actions/movie';
+import { searchMovie } from '../store/actions/movie';
+import { BsArrowLeft } from 'react-icons/bs';
+
 import { ReactComponent as Masks } from '../assets/masks.svg';
 
 const { colors, fontSizes } = theme;
@@ -19,22 +21,21 @@ const StyledMovie = styled(motion.div)`
   border-radius: 3px;
   flex: 1;
 
-    & img {
-      border-radius: 2px;
-      opacity: 1;
-      width: 100%;
-    }
+  & img {
+    border-radius: 2px;
+    opacity: 1;
+    width: 100%;
+  }
 
-    & p {
-      color: ${colors.white};
-      font-size: ${fontSizes.md};
-      text-transform: uppercase;
-      text-align: left;
-    }
+  & p {
+    color: ${colors.white};
+    font-size: ${fontSizes.md};
+    text-transform: uppercase;
+    text-align: left;
+  }
 
-    & a {
-      color: ${colors.white};
-    }
+  & a {
+    color: ${colors.white};
   }
 `;
 
@@ -45,15 +46,17 @@ const StyledResultsContainer = styled.main`
   flex: 1;
 `;
 
-function Results({ searchResults, fetchMovie, history }) {
-  useEffect(() => {}, []);
+function Results({ searchResults, findMovie, history }) {
+  useEffect(() => {
+    let searchQuery = history.location.search.replace('?search=', '');
+    findMovie(searchQuery);
+  }, []);
 
-  console.log('from results page', searchResults);
   const movies = searchResults.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
 
     return (
-      <div key={movie.id} style={{display: 'flex', width: '100%'}}>
+      <div key={movie.id} style={{ display: 'flex', width: '100%' }}>
         <StyledMovie
           whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}
         >
@@ -75,16 +78,12 @@ function Results({ searchResults, fetchMovie, history }) {
     );
   });
 
-  const content =
-    movies.length > 0 ? (
-      movies
-    ) : (
-      <div style={{ flex: '1' }}>
-        <h1>Start by using the search bar above.</h1>
-      </div>
-    );
-
-  return <StyledResultsContainer>{content}</StyledResultsContainer>;
+  return (
+    <>
+      <BsArrowLeft onClick={history.goBack} />
+      <StyledResultsContainer>{movies}</StyledResultsContainer>
+    </>
+  );
 }
 
 const mapStateToProps = (state) => {
@@ -95,7 +94,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMovie: (movieId) => dispatch(fetchMovieDetails(movieId)),
+    findMovie: (searchTerm) => dispatch(searchMovie(searchTerm)),
   };
 };
 

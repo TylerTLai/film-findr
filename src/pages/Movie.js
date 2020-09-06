@@ -18,7 +18,7 @@ import Button from '../styles/Button';
 // import { usePalette } from 'color-thief-react';
 import Modal from '../components/Modal/Modal';
 
-const {colors, fontSizes } = theme;
+const { colors, fontSizes } = theme;
 
 const StyledDetails = styled.div`
   color: ${colors.white};
@@ -128,7 +128,7 @@ function Movie({
   }, []);
 
   const [showModal, setShowModal] = useState(false);
-  
+
   const trailerKey =
     videos !== 'undefined' && videos.length > 0
       ? videos.filter((video) => video.site === 'YouTube')[0].key
@@ -139,7 +139,8 @@ function Movie({
   //   .filter((cast) => cast.profile_path !== null);
   // const casts = credits.cast.map(cast => console.log(cast))
 
-  const backdropURL = URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
+  const backdropURL =
+    URL_IMG + BACKDROP_SIZE_ORIGINAL + movieDetails.backdrop_path;
 
   const showTrailer = () => {
     setShowModal((prevState) => !prevState);
@@ -179,9 +180,7 @@ function Movie({
             }}
           </Palette> */}
 
-          <h1 style={{ color: `${colors.white}` }}>
-            {movieDetails.title}
-          </h1>
+          <h1 style={{ color: `${colors.white}` }}>{movieDetails.title}</h1>
           <h2>{movieDetails.tagline}</h2>
           <Button onClick={showTrailer}>WATCH TRAILER</Button>
 
