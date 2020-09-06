@@ -1,17 +1,16 @@
-import styled from 'styyled-components';
+import styled from 'styled-components';
 import theme from './theme';
 
-const { colors } = theme;
+const { colors, fontSizes } = theme;
 
-export const Button = styled.button`
+const Button = styled.button`
   background: ${colors.teal};
-  color: white;
-  font-size: 1em;
+  color: ${colors.white};
+  font-size: ${fontSizes.md};
   padding: 12px 20px;
   border: 0;
   border-radius: 5px;
-  width: 100%;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
 
   &:hover,
   &:focus,
@@ -20,3 +19,5 @@ export const Button = styled.button`
     cursor: pointer;
   }
 `;
+
+export default Button;

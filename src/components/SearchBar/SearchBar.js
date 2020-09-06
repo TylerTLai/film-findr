@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import theme from '../../styles/theme';
 import { FiSearch } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { searchMovie } from '../../store/actions/movie';
 import { useHistory } from 'react-router-dom';
+import theme from '../../styles/theme';
+import Button from '../../styles/Button';
 
 const StyledSearchContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & button {
+    padding: 10px 20px 20px 20px;
+    border-radius: 0 3px 3px 0;
+    height: 34px;
+  }
 `;
 
 const StyledSearchInput = styled.input`
@@ -22,25 +29,8 @@ const StyledSearchInput = styled.input`
   background-color: ${theme.colors.white};
 `;
 
-const StyledSearchButton = styled.button`
-  background: ${theme.colors.teal};
-  color: ${theme.colors.white};
-  font-size: 1em;
-  padding: 10px 20px 20px 20px;
-  border: 0;
-  border-radius: 0 3px 3px 0;
-  height: 34px;
-  transition: 0.2s ease-in-out;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: ${theme.colors.lightTeal};
-    cursor: pointer;
-  }
-`;
-
 function SearchBar({ movie, findMovie }) {
+  
   const history = useHistory();
   const [query, setQuery] = useState('');
 
@@ -48,7 +38,7 @@ function SearchBar({ movie, findMovie }) {
     e.preventDefault();
     findMovie(query);
     history.push('/results');
-    setQuery('')
+    setQuery('');
   };
 
   const handleChange = (e) => {
@@ -65,9 +55,9 @@ function SearchBar({ movie, findMovie }) {
         value={query}
         onChange={handleChange}
       ></StyledSearchInput>
-      <StyledSearchButton type="submit">
+      <Button type="submit">
         <FiSearch />
-      </StyledSearchButton>
+      </Button>
     </StyledSearchContainer>
   );
 }

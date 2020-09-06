@@ -13,63 +13,51 @@ import {
 // import { FaStar } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 import theme from '../styles/theme';
+import Button from '../styles/Button';
 // import { Palette } from 'color-thief-react';
 // import { usePalette } from 'color-thief-react';
 import Modal from '../components/Modal/Modal';
 
+const {colors, fontSizes } = theme;
+
 const StyledDetails = styled.div`
-  color: ${theme.colors.white};
+  color: ${colors.white};
   padding: 2em;
 
   & .backArrow {
-    color: ${theme.colors.gray};
-    font-size: 3em;
+    color: ${colors.gray};
+    font-size: ${fontSizes.xl}; /*3em*/
     transition: 0.1s ease-in-out;
 
     &:hover {
-      color: ${theme.colors.lightTeal};
+      color: ${colors.lightTeal};
       cursor: pointer;
     }
   }
 
   & h1 {
-    font-size: 3em;
-    color: ${theme.colors.white};
+    font-size: ${fontSizes.xl};
+    color: ${colors.white};
     text-transform: uppercase;
   }
 
   & h2 {
-    color: ${theme.colors.lightTeal};
-    font-size: 1.5em;
+    color: ${colors.liteTeal};
+    font-size: ${fontSizes.lg};
   }
 
   & h3 {
-    color: ${theme.colors.gray};
+    color: ${colors.gray};
 
     & p {
-      color: ${theme.colors.lightTeal};
-      font-size: 0.8em;
+      color: ${colors.liteTeal};
+      font-size: ${fontSizes.xs};
       letter-spacing: 2px;
     }
   }
 
   & p {
     line-height: 2;
-  }
-
-  & button {
-    display: inline-block;
-    border: none;
-    color: ${theme.colors.white};
-    padding: 1em 1.5em;
-    background-color: ${theme.colors.teal};
-    border-radius: 5px;
-    transition: 0.2s ease-in-out;
-
-    &:hover {
-      background-color: ${theme.colors.lightTeal};
-      cursor: pointer;
-    }
   }
 `;
 
@@ -83,7 +71,7 @@ const StyledInfo = styled.div`
 const StyledBackdrop = styled.div`
   background-image: linear-gradient(
       to right,
-      ${theme.colors.black} 1%,
+      ${colors.black} 1%,
       rgba(0, 0, 0, 0) 10%,
       rgba(0, 0, 0, 0)
     ),
@@ -95,7 +83,7 @@ const StyledBackdrop = styled.div`
 `;
 
 const StyledTopContainer = styled.div`
-  background-color: ${theme.colors.black};
+  background-color: ${colors.black};
   display: grid;
   grid-template-columns: 1fr, 2fr;
   grid-template-areas: 'details backdrop';
@@ -112,13 +100,13 @@ const StyledTopContainer = styled.div`
 
 const StyledBottomContainer = styled.div`
   display: grid;
-  background-color: ${theme.colors.black};
-  color: ${theme.colors.white};
+  background-color: ${colors.black};
+  color: ${colors.white};
   padding: 2em;
   flex: 1;
 
   & h1 {
-    font-size: 3em;
+    font-size: ${fontSizes.xl};
   }
 `;
 
@@ -134,19 +122,13 @@ function Movie({
 }) {
   useEffect(() => {
     const movieId = history.location.pathname.slice(1);
-    // const movieId = props.match.params.movie_id;
-    // debugger;
     fetchMovie(movieId);
     fetchVideos(movieId);
     fetchCredits(movieId);
   }, []);
 
   const [showModal, setShowModal] = useState(false);
-
-  // console.log('from movie credit', credits.cast);
-  // console.log('from movie vide', videos);
-  // const cast = credits.map((castMember) => castMember);
-
+  
   const trailerKey =
     videos !== 'undefined' && videos.length > 0
       ? videos.filter((video) => video.site === 'YouTube')[0].key
@@ -198,11 +180,11 @@ function Movie({
             }}
           </Palette> */}
 
-          <h1 style={{ color: `${theme.colors.white}` }}>
+          <h1 style={{ color: `${colors.white}` }}>
             {movieDetails.title}
           </h1>
           <h2>{movieDetails.tagline}</h2>
-          <button onClick={showTrailer}>WATCH TRAILER</button>
+          <Button onClick={showTrailer}>WATCH TRAILER</Button>
 
           <StyledInfo>
             <h3>

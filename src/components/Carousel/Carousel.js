@@ -6,6 +6,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import theme from '../../styles/theme';
+import Button from '../../styles/Button';
 
 import {
   fetchUpcomingMovies,
@@ -48,19 +49,7 @@ const StyledMovieText = styled.div`
   }
 
   & button {
-    background: ${theme.colors.black};
-    color: ${theme.colors.white};
-    font-size: 1.2em;
-    padding: 12px 20px;
     border: 1px solid ${theme.colors.white};
-    border-radius: 5px;
-    transition: 0.2s ease-in-out;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: ${theme.colors.lightTeal};
-      cursor: pointer;
     }
   }
 `;
@@ -88,7 +77,7 @@ function Carousel({ movies, getMovies, fetchMovie }) {
             <h1>{movie.title}</h1>
             <p>RELEASE DATE: {movie.release_date}</p>
             <Link to={'/' + movie.id}>
-              <button onClick={() => handleClick(movie.id)}>View Movie</button>
+              <Button onClick={() => handleClick(movie.id)}>View Movie</Button>
             </Link>
           </StyledMovieText>
         </StyledHeader>

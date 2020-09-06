@@ -10,13 +10,16 @@ import { fetchMovieDetails } from '../../store/actions/movie';
 import { motion } from 'framer-motion';
 import Arrows from '../Arrows/Arrows';
 import theme from '../../styles/theme';
+import Button from '../../styles/Button';
+
+const {colors, fontSizes} = theme;
 
 const StyledMovieListContainer = styled.main`
   padding: 0 0 0 50px;
 `;
 
 const StyledMovieSection = styled.div`
-  background-color: ${theme.colors.darkGray};
+  background-color: ${colors.darkGray};
   padding: 2em 1em 2em 1em;
   display: flex;
   flex-direction: column;
@@ -24,7 +27,7 @@ const StyledMovieSection = styled.div`
 `;
 
 const StyledMovieCategory = styled.h1`
-  color: ${theme.colors.white};
+  color: ${colors.white};
   margin-top: 75px;
 `;
 
@@ -32,7 +35,7 @@ const StyledMovie = styled(motion.div)`
   /* display: flex;
   flex-direction: column;
   align-items: left; */
-  background-color: ${theme.colors.midGray};
+  background-color: ${colors.midGray};
   /* border: 2px solid #373b41; */
   margin-left: 10px;
   margin-right: 10px;
@@ -46,40 +49,20 @@ const StyledMovie = styled(motion.div)`
   }
 
   & p {
-    color: ${theme.colors.white};
-    font-size: 1em;
+    color: ${colors.white};
+    font-size: ${fontSizes.md};
     text-transform: uppercase;
     text-align: left;
   }
 
   & a {
-    color: ${theme.colors.white};
-  }
-
-  & button {
-    background: ${theme.colors.teal};
-    color: ${theme.colors.white};
-    font-size: 1em;
-    padding: 12px 20px;
-    border: 0;
-    border-radius: 5px;
-    width: 100%;
-    transition: 0.2s ease-in-out;
-
-    &:hover {
-      background: ${theme.colors.lightTeal};
-      cursor: pointer;
-    }
+    color: ${colors.white};
   }
 `;
 
 function MovieList({ title, movies, fetchMovie }) {
   const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
-
-    // const handleClick = (id) => {
-    //   fetchMovie(id);
-    // };
 
     return (
       <div key={movie.id}>
@@ -93,7 +76,7 @@ function MovieList({ title, movies, fetchMovie }) {
               : movie.title.slice(0, 13) + '...'}
           </p>
           <Link to={'/' + movie.id}>
-            <button >View Movie</button>
+            <Button>View Movie</Button>
           </Link>
         </StyledMovie>
       </div>
