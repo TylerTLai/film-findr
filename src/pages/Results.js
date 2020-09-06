@@ -9,41 +9,74 @@ import { Link } from 'react-router-dom';
 import { searchMovie } from '../store/actions/movie';
 import { BsArrowLeft } from 'react-icons/bs';
 
-import { ReactComponent as Masks } from '../assets/masks.svg';
+import { ReactComponent as AltPoster } from '../assets/poster.svg';
 
 const { colors, fontSizes } = theme;
+
+const StyledResultsContainer = styled.main`
+  background-color: ${colors.black};
+  padding: 0 50px;
+
+  & .backArrow {
+    color: ${colors.gray};
+    font-size: ${fontSizes.xl};
+
+    &:hover {
+      color: ${colors.liteTeal};
+      cursor: pointer;
+    }
+  }
+`;
+
+const StyledResults = styled.div`
+  display: grid;
+  grid-row-gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+`;
+
+const StyledMoviePoster = styled.img`
+  border-radius: 2px;
+  opacity: 1;
+  width: 100%;
+`;
+
+const StyledMovieTitle = styled.p`
+  color: ${colors.white};
+  font-size: ${fontSizes.md};
+  text-transform: uppercase;
+  text-align: left;
+`;
+
+const StyledMovieButton = styled.div`
+
+& button {
+  width: 100%;
+}
+`;
 
 const StyledMovie = styled(motion.div)`
   background-color: ${colors.midGray};
   margin-left: 10px;
   margin-right: 10px;
-  padding: 20px 10px;
+  padding: 20px 10px 0 10px;
   border-radius: 3px;
-  flex: 1;
-
-  & img {
-    border-radius: 2px;
-    opacity: 1;
-    width: 100%;
-  }
-
-  & p {
-    color: ${colors.white};
-    font-size: ${fontSizes.md};
-    text-transform: uppercase;
-    text-align: left;
-  }
-
-  & a {
-    color: ${colors.white};
-  }
-`;
-
-const StyledResultsContainer = styled.main`
-  background-color: ${colors.black};
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  flex: 1;
+  grid-template-rows: 2fr 0.5fr 0.5fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'poster'
+    'title'
+    'button';
+
+  & ${StyledMoviePoster} {
+    grid-area: poster;
+  }
+  & ${StyledMovieTitle} {
+    grid-area: title;
+  }
+  & ${StyledMovieButton} {
+    grid-area: button;
+  }
 `;
 
 function Results({ searchResults, findMovie, history }) {
@@ -61,18 +94,20 @@ function Results({ searchResults, findMovie, history }) {
           whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}
         >
           {movie.poster_path ? (
-            <img src={posterURL} alt={movie.title + ' poster'} />
+            <StyledMoviePoster src={posterURL} alt={movie.title + ' poster'} />
           ) : (
-            <Masks />
+            <AltPoster />
           )}
-          <p>
+          <StyledMovieTitle>
             {movie.title.length <= 15
               ? movie.title
               : movie.title.slice(0, 13) + '...'}
-          </p>
-          <Link to={'/' + movie.id}>
-            <Button>View Movie</Button>
-          </Link>
+          </StyledMovieTitle>
+          <StyledMovieButton>
+            <Link to={'/' + movie.id}>
+              <Button>View Movie</Button>
+            </Link>
+          </StyledMovieButton>
         </StyledMovie>
       </div>
     );
@@ -80,8 +115,10 @@ function Results({ searchResults, findMovie, history }) {
 
   return (
     <>
-      <BsArrowLeft onClick={history.goBack} />
-      <StyledResultsContainer>{movies}</StyledResultsContainer>
+      <StyledResultsContainer>
+        <BsArrowLeft className="backArrow" onClick={history.goBack} />
+        <StyledResults>{movies}</StyledResults>
+      </StyledResultsContainer>
     </>
   );
 }
