@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 const StyledBackdrop = styled(motion.div)`
   position: fixed;
@@ -16,7 +17,7 @@ const StyledBackdrop = styled(motion.div)`
 const StyledModal = styled(motion.div)`
   max-width: 70vw;
   margin: 0 auto;
-  padding: 0.5em;
+  padding: 1.5em;
   background: ${theme.colors.black};
   border-radius: 10px;
 `;
@@ -82,6 +83,17 @@ const Modal = ({ showModal, setShowModal, trailerKey }) => {
                 allowFullScreen
                 modestbranding="1"
               ></iframe>
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '-26px',
+                  right: '-26px',
+                  color: '#fff',
+                }}
+                onClick={() => setShowModal(false)}
+              >
+                <AiFillCloseCircle size={30} />
+              </div>
             </StyledVideoWrapper>
           </StyledModal>
         </StyledBackdrop>
