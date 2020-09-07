@@ -11,7 +11,7 @@ import {
   fetchCredits,
   fetchVideos,
 } from '../store/actions/movie';
-import { FaStar } from 'react-icons/fa';
+// import { FaStar } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 import theme from '../styles/theme';
 import Button from '../styles/Button';
@@ -25,10 +25,11 @@ const { colors, fontSizes } = theme;
 const StyledDetails = styled.div`
   color: ${colors.white};
   padding: 2em;
+  /* max-width: 370px;
+  word-wrap: break-word; */
 
   & .backArrow {
     color: ${colors.gray};
-    font-size: ${fontSizes.xl}; /*3em*/
     transition: 0.1s ease-in-out;
 
     &:hover {
@@ -44,7 +45,7 @@ const StyledDetails = styled.div`
   }
 
   & h2 {
-    color: ${colors.liteTeal};
+    color: ${colors.orange};
     font-size: ${fontSizes.lg};
   }
 
@@ -52,7 +53,7 @@ const StyledDetails = styled.div`
     color: ${colors.gray};
 
     & p {
-      color: ${colors.liteTeal};
+      color: ${colors.orange};
       font-size: ${fontSizes.xs};
       letter-spacing: 2px;
     }
@@ -159,10 +160,6 @@ function Movie({
     return rhours + 'h ' + rminutes + 'm';
   };
 
-const testDate = moment(movieDetails.release_date).format('MMMM Do YYYY');
-
-console.log('from movies', testDate)
-
   return (
     <>
       <Modal
@@ -172,7 +169,7 @@ console.log('from movies', testDate)
       />
       <StyledTopContainer>
         <StyledDetails>
-          <BsArrowLeft className="backArrow" onClick={history.goBack} />
+          <BsArrowLeft className="backArrow" onClick={history.goBack} size={55} />
 
           {/* <Palette
             src={backdropURL}
@@ -198,14 +195,16 @@ console.log('from movies', testDate)
           </Palette> */}
 
           <h1 style={{ color: `${colors.white}` }}>{movieDetails.title}</h1>
+          
           <h2>
             <em>{movieDetails.tagline}</em>
           </h2>
+
           <Button onClick={showTrailer}>WATCH TRAILER</Button>
 
           <StyledInfo>
             <h3>
-              Release Date{' '}
+              Release Date
               <p>{moment(movieDetails.release_date).format('MMM Do YYYY')}</p>
             </h3>
             <h3>
@@ -223,6 +222,7 @@ console.log('from movies', testDate)
 
           <h3>Plot</h3>
           <p>{movieDetails.overview}</p>
+
         </StyledDetails>
 
         {movieDetails.backdrop_path ? (
@@ -233,7 +233,9 @@ console.log('from movies', testDate)
         ) : (
           <AltPoster />
         )}
+
       </StyledTopContainer>
+
       <StyledBottomContainer>
         {/* <h1>Cast & Crew</h1> */}
         {/* <p>{cast}</p> */}

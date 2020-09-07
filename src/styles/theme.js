@@ -5,7 +5,7 @@ const theme = {
     white: '#e6f1ff',
     teal: 'linear-gradient(to right, #DA4453, #89216B)',
     lightTeal: 'linear-gradient(to right, #00B4DB, #0083B0)',
-    liteTeal: '#00c6ff',
+    liteTeal: '#00B4DB',
     black: BG,
     orange: '#DA4453',
     gray: '#99B2B4',
@@ -17,13 +17,10 @@ const theme = {
 
   fontSizes: {
     xs: '12px',
-    smish: '13px',
     sm: '14px',
     md: '16px',
     lg: '24px',
     xl: '48px',
-    xxl: '22px',
-    h3: '32px',
   },
 };
 
