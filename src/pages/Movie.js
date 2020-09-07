@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -18,7 +19,6 @@ import Button from '../styles/Button';
 // import { usePalette } from 'color-thief-react';
 import Modal from '../components/Modal/Modal';
 import { ReactComponent as AltPoster } from '../assets/poster.svg';
-
 
 const { colors, fontSizes } = theme;
 
@@ -149,6 +149,10 @@ function Movie({
     setShowModal((prevState) => !prevState);
   };
 
+  // const convertedReleaseDate = movieDetails
+  //   ? moment(movieDetails.release_date, 'YYYY-MM-DD')
+  //   : null;
+
   const convertRuntime = (num) => {
     let hours = num / 60;
     let rhours = Math.floor(hours);
@@ -156,6 +160,10 @@ function Movie({
     let rminutes = Math.round(minutes);
     return rhours + 'h ' + rminutes + 'm';
   };
+
+const testDate = moment(movieDetails.release_date).format('MMMM Do YYYY');
+
+console.log('from movies', testDate)
 
   return (
     <>
@@ -197,7 +205,8 @@ function Movie({
 
           <StyledInfo>
             <h3>
-              Release Date <p>{movieDetails.release_date}</p>
+              Release Date{' '}
+              <p>{moment(movieDetails.release_date).format('MMM Do YYYY')}</p>
             </h3>
             <h3>
               Rating

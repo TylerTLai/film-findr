@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import moment from 'moment';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -77,7 +78,10 @@ function Carousel({ movies, getMovies, fetchMovie }) {
           <StyledMovieText>
             <h3>COMING SOON</h3>
             <h1>{movie.title}</h1>
-            <p>RELEASE DATE: {movie.release_date}</p>
+            <p>
+              Release Date: <br />
+              {moment(movie.release_date).format('MMM Do YYYY')}
+            </p>
             <Link to={'/' + movie.id}>
               <Button onClick={() => handleClick(movie.id)}>View Movie</Button>
             </Link>

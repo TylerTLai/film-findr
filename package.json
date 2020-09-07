@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "color-thief-react": "^2.0.8",
     "framer-motion": "^2.6.6",
+    "moment": "^2.27.0",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
