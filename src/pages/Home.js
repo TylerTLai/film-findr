@@ -12,8 +12,8 @@ import {
 } from '../store/actions/movie';
 
 const StyledMain = styled.main`
-  background-color: ${theme.colors.black};
-  flex: 1;
+  /* background-color: ${theme.colors.black}; */
+  /* flex: 1; */
 `;
 
 function Home({

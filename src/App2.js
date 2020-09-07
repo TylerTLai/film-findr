@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Movie from './pages/Movie';
 import Results from './pages/Results';
 import Page404 from './pages/Page404';
-import Test from './Test';
 
 function App2() {
   return (
@@ -19,7 +18,6 @@ function App2() {
         <Route exact path="/" component={Home} />
         <Route component={Page404} />
       </Switch>
-      {/* <Test /> */}
     </>
   );
 }

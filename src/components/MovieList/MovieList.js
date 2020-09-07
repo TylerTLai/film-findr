@@ -8,7 +8,8 @@ import { URL_IMG, IMG_SIZE_LARGE } from '../../const';
 import { connect } from 'react-redux';
 import { fetchMovieDetails } from '../../store/actions/movie';
 import { motion } from 'framer-motion';
-import Arrows from '../Arrows/Arrows';
+import NextArrow from '../Arrows/NextArrow';
+import PrevArrow from '../Arrows/PrevArrow';
 import theme from '../../styles/theme';
 import Button from '../../styles/Button';
 import { ReactComponent as AltPoster } from '../../assets/poster.svg';
@@ -103,9 +104,9 @@ function MovieList({ title, movies }) {
             <AltPoster />
           )}
           <StyledMovieTitle>
-            {movie.title.length <= 32
+            {movie.title.length <= 20
               ? movie.title
-              : movie.title.slice(0, 32) + '...'}
+              : movie.title.slice(0, 22) + '...'}
           </StyledMovieTitle>
           <StyledMovieButton>
             <Link to={'/' + movie.id}>
@@ -119,9 +120,8 @@ function MovieList({ title, movies }) {
 
   const settings = {
     autoplay: false,
-    // arrows: true,
-    nextArrow: <Arrows />,
-    prevArrow: <Arrows />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     dots: false,
     draggable: true,
     infinite: true,

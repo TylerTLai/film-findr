@@ -7,6 +7,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import theme from '../../styles/theme';
 import Button from '../../styles/Button';
+import NextArrow from '../Arrows/NextArrow';
+import PrevArrow from '../Arrows/PrevArrow';
 
 import {
   fetchUpcomingMovies,
@@ -95,6 +97,8 @@ function Carousel({ movies, getMovies, fetchMovie }) {
     slidesToScroll: 1,
     arrows: true,
     mobileFirst: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
   };
 
   return (
