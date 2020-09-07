@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 import rootReducer from './store/reducers';
-import './index.css';
 import 'normalize.css';
+// import './index.css';
 // import App from './App';
 import App2 from './App2';
 

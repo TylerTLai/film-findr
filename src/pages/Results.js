@@ -49,10 +49,9 @@ const StyledMovieTitle = styled.p`
 `;
 
 const StyledMovieButton = styled.div`
-
-& button {
-  width: 100%;
-}
+  & button {
+    width: 100%;
+  }
 `;
 
 const StyledMovie = styled(motion.div)`
@@ -95,13 +94,16 @@ function Results({ searchResults, findMovie, history }) {
           whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}
         >
           {movie.poster_path ? (
-            <StyledMoviePoster src={posterURL} alt={movie.title + ' poster'} />
+            <Link to={'/' + movie.id}>
+              <StyledMoviePoster
+                src={posterURL}
+                alt={movie.title + ' poster'}
+              />
+            </Link>
           ) : (
             <AltPoster />
           )}
-          <StyledMovieTitle>
-            {movie.title}
-          </StyledMovieTitle>
+          <StyledMovieTitle>{movie.title}</StyledMovieTitle>
           <StyledMovieButton>
             <Link to={'/' + movie.id}>
               <Button>View Movie</Button>

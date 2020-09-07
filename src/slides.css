@@ -1,0 +1,13 @@
+body {
+    background: #000;
+}
+
+.App {
+    padding: 10px 30px;
+}
+
+.App>div {
+    background-color: #fff;
+    color: #3498db;
+    text-align: center;
+}

@@ -11,8 +11,9 @@ import { motion } from 'framer-motion';
 import Arrows from '../Arrows/Arrows';
 import theme from '../../styles/theme';
 import Button from '../../styles/Button';
+import { ReactComponent as AltPoster } from '../../assets/poster.svg';
 
-const {colors, fontSizes} = theme;
+const { colors, fontSizes } = theme;
 
 const StyledMovieListContainer = styled.main`
   padding: 0 0 0 50px;
@@ -21,46 +22,68 @@ const StyledMovieListContainer = styled.main`
 const StyledMovieSection = styled.div`
   background-color: ${colors.darkGray};
   padding: 2em 1em 2em 1em;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 `;
 
 const StyledMovieCategory = styled.h1`
   color: ${colors.white};
   margin-top: 75px;
+
+  &:before {
+    content: '|';
+    color: ${colors.orange};
+    position: relative;
+    left: -1px;
+  }
+`;
+
+const StyledMoviePoster = styled.img`
+  border-radius: 2px;
+  opacity: 1;
+  width: 100%;
+`;
+
+const StyledMovieTitle = styled.p`
+  color: ${colors.white};
+  font-size: ${fontSizes.md};
+  text-transform: uppercase;
+  text-align: left;
+`;
+
+const StyledMovieButton = styled.div`
+  & button {
+    width: 100%;
+  }
 `;
 
 const StyledMovie = styled(motion.div)`
-  /* display: flex;
-  flex-direction: column;
-  align-items: left; */
   background-color: ${colors.midGray};
-  /* border: 2px solid #373b41; */
   margin-left: 10px;
   margin-right: 10px;
-  padding: 20px 10px;
+  padding: 20px 10px 0 10px;
   border-radius: 3px;
+  display: grid;
+  grid-template-rows: 2fr 0.5fr 0.5fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'poster'
+    'title'
+    'button';
 
-  & img {
-    border-radius: 2px;
-    opacity: 1;
-    width: 100%;
+  & ${StyledMoviePoster} {
+    grid-area: poster;
   }
-
-  & p {
-    color: ${colors.white};
-    font-size: ${fontSizes.md};
-    text-transform: uppercase;
-    text-align: left;
+  & ${StyledMovieTitle} {
+    grid-area: title;
   }
-
-  & a {
-    color: ${colors.white};
+  & ${StyledMovieButton} {
+    grid-area: button;
   }
 `;
 
-function MovieList({ title, movies, fetchMovie }) {
+function MovieList({ title, movies }) {
   const movieCollection = movies.map((movie) => {
     const posterURL = URL_IMG + IMG_SIZE_LARGE + movie.poster_path;
 
@@ -69,15 +92,26 @@ function MovieList({ title, movies, fetchMovie }) {
         <StyledMovie
           whileHover={{ backgroundColor: 'rgba(87, 103, 119, 0.5)' }}
         >
-          <img src={posterURL} alt={movie.title} />
-          <p>
-            {movie.title.length <= 15
+          {movie.poster_path ? (
+            <Link to={'/' + movie.id}>
+              <StyledMoviePoster
+                src={posterURL}
+                alt={movie.title + ' poster'}
+              />
+            </Link>
+          ) : (
+            <AltPoster />
+          )}
+          <StyledMovieTitle>
+            {movie.title.length <= 32
               ? movie.title
-              : movie.title.slice(0, 13) + '...'}
-          </p>
-          <Link to={'/' + movie.id}>
-            <Button>View Movie</Button>
-          </Link>
+              : movie.title.slice(0, 32) + '...'}
+          </StyledMovieTitle>
+          <StyledMovieButton>
+            <Link to={'/' + movie.id}>
+              <Button>View Movie</Button>
+            </Link>
+          </StyledMovieButton>
         </StyledMovie>
       </div>
     );
@@ -85,7 +119,7 @@ function MovieList({ title, movies, fetchMovie }) {
 
   const settings = {
     autoplay: false,
-    arrows: true,
+    // arrows: true,
     nextArrow: <Arrows />,
     prevArrow: <Arrows />,
     dots: false,
@@ -131,14 +165,10 @@ function MovieList({ title, movies, fetchMovie }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchMovie: (movieId) => dispatch(fetchMovieDetails(movieId)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(null, mapDispatchToProps)(MovieList);
