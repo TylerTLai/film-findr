@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import styled from 'styled-components';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { URL_IMG, BACKDROP_SIZE_ORIGINAL } from '../const';
@@ -120,7 +120,6 @@ function Movie({
   credits,
   videos,
   history,
-  ...props
 }) {
   useEffect(() => {
     const movieId = history.location.pathname.slice(1);
@@ -136,10 +135,13 @@ function Movie({
     videos !== 'undefined' && videos.length > 0
       ? videos.filter((video) => video.site === 'YouTube')[0].key
       : 'no key';
+
   // const genres = [];
+
   // const casts = credits.cast
   //   .slice(0, 8)
   //   .filter((cast) => cast.profile_path !== null);
+
   // const casts = credits.cast.map(cast => console.log(cast))
 
   const backdropURL =
@@ -148,10 +150,6 @@ function Movie({
   const showTrailer = () => {
     setShowModal((prevState) => !prevState);
   };
-
-  // const convertedReleaseDate = movieDetails
-  //   ? moment(movieDetails.release_date, 'YYYY-MM-DD')
-  //   : null;
 
   const convertRuntime = (num) => {
     let hours = num / 60;
@@ -200,7 +198,9 @@ console.log('from movies', testDate)
           </Palette> */}
 
           <h1 style={{ color: `${colors.white}` }}>{movieDetails.title}</h1>
-          <h2>{movieDetails.tagline}</h2>
+          <h2>
+            <em>{movieDetails.tagline}</em>
+          </h2>
           <Button onClick={showTrailer}>WATCH TRAILER</Button>
 
           <StyledInfo>
@@ -210,7 +210,11 @@ console.log('from movies', testDate)
             </h3>
             <h3>
               Rating
-              <p>{movieDetails.vote_average} | 10</p>
+              <p>
+                {movieDetails.vote_average
+                  ? movieDetails.vote_average + ' | 10'
+                  : '----'}
+              </p>
             </h3>
             <h3>
               Runtime <p>{convertRuntime(movieDetails.runtime)}</p>
