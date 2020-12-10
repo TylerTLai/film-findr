@@ -6,6 +6,14 @@
 
 👉 [Live Demo](https://film-findr.netlify.app/)
 
+![demo](https://raw.githubusercontent.com/TylerTLai/film-findr/master/src/assets/demo.png)
+
+![demo](https://raw.githubusercontent.com/TylerTLai/film-findr/master/src/assets/demo2.png)
+
+![demo](https://raw.githubusercontent.com/TylerTLai/film-findr/master/src/assets/demo3.png)
+
+![demo](https://raw.githubusercontent.com/TylerTLai/film-findr/master/src/assets/demo3.png)
+
 ## Technology used
 
 - React.js
